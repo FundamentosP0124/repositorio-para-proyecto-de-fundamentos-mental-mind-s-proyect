@@ -6,8 +6,11 @@ using namespace std;
 de acuerdo a la modalidad seleccionada del juego sin es por limites de inaciertos puntuacion final
 segun si es el modo multijugador o de manera individual*/
 
+void menu();
+
 int main(void)
 {
+    menu();
 
     return 0;
 }
@@ -41,5 +44,5 @@ void menu()
 
 int cantidadJugadores(int Cant)
 {
-    
+
 }
