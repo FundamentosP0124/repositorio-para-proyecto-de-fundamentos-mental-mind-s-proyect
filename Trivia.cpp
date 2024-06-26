@@ -83,8 +83,22 @@ int cantidadJugadores(int Cant) // Obtendremos la cantiad de jugadores con los q
     }
 }
 
+// Esta funcion se debe repetir para cada arreglo de cada nivel y se utilizara para las preguntas de todos los temas
+
 int RandorizarPosicionArreglo(int PosicionRan) // Vamos a randorizar la poscion del arreglo para las preguntas
 {
+    int arre[0];
+
+    srand(time(0));
+
+    int posicionAletoria = rand() % 5;
+
+    // Texteo para ver si el valor si se genera de forma correcta
+
+    cout << "Posicion" << posicionAletoria;
+
+    // Le regresamos el valor a la funcion para ser utilizada mas adelante
+    PosicionRan = posicionAletoria;
 }
 
 int SelecionTemas(int temaSeleccionado) // Seleccionar los temas que los jugadores desean jugar
@@ -113,7 +127,7 @@ int SelecionTemas(int temaSeleccionado) // Seleccionar los temas que los jugador
         {
             cout << mensajeOne << endl;
             cout << "- ";
-            // cin >> ;
+            cin >> temaSeleccionado;
             continue;
         }
         break;
@@ -122,14 +136,12 @@ int SelecionTemas(int temaSeleccionado) // Seleccionar los temas que los jugador
 
 void temas(void)
 {
-   string arre[4] = {"TEMA 1", "TEMA 2", "TEMA 3", "TEMA 4"};
+    string arre[4] = {"TEMA 1", "TEMA 2", "TEMA 3", "TEMA 4"};
 
-   cout << "    TEMAS   ";
+    cout << "    TEMAS   ";
 
-   for (int i = 0; i < 4; i++)
-   {
-     cout << arre[i] << endl;
-   }
-   
+    for (int i = 0; i < 4; i++)
+    {
+        cout << arre[i] << endl;
+    }
 }
-
