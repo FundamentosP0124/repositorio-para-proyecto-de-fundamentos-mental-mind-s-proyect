@@ -100,6 +100,7 @@ int SelecionTemas(int temaSeleccionado) // Seleccionar los temas que los jugador
 
     cout << mensajeOne << endl;
     cout << mensajeTwo << endl;
+    temas();
 
     cout << "- ";
     cin >> temaSeleccionado;
@@ -117,5 +118,18 @@ int SelecionTemas(int temaSeleccionado) // Seleccionar los temas que los jugador
         }
         break;
     }
+}
+
+void temas(void)
+{
+   string arre[4] = {"TEMA 1", "TEMA 2", "TEMA 3", "TEMA 4"};
+
+   cout << "    TEMAS   ";
+
+   for (int i = 0; i < 4; i++)
+   {
+     cout << arre[i] << endl;
+   }
+   
 }
 
