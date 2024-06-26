@@ -87,3 +87,35 @@ int RandorizarPosicionArreglo(int PosicionRan) // Vamos a randorizar la poscion 
 {
 }
 
+int SelecionTemas(int temaSeleccionado) // Seleccionar los temas que los jugadores desean jugar
+{
+
+    char confirmacion;
+
+    string mensajeOne = "Selecccione los temas con los que desean jugar.";
+    string mensajeTwo = "Recuerden que el tema seleccionado aplicara para todas las preguntas a todo los jugadores.";
+    string mensajeThree = "¿Esta seguro de la cantidad de jugadores que desea inscribir sean?: ";
+    string mensajeFoor = "Presione 's' para confirmar";
+    string mensajeFive = "Presione 'n' para cambiar la cantidad de jugadores";
+
+    cout << mensajeOne << endl;
+    cout << mensajeTwo << endl;
+
+    cout << "- ";
+    cin >> temaSeleccionado;
+
+    // Realizamos la confirmacion
+
+    while (true)
+    {
+        if (confirmacion == 'n')
+        {
+            cout << mensajeOne << endl;
+            cout << "- ";
+            // cin >> ;
+            continue;
+        }
+        break;
+    }
+}
+
