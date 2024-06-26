@@ -1,4 +1,7 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <string>
 
 using namespace std;
 
@@ -42,7 +45,45 @@ void menu()
     }
 }
 
-int cantidadJugadores(int Cant)
+int cantidadJugadores(int Cant) // Obtendremos la cantiad de jugadores con los que desean iniciar
 {
 
+    char confirmacion;
+
+    // Almacenar mensajes para evitar repetirlos
+
+    string mensajeOne = "Ingrese la cantidad de jugadores que desean inscribirse.";
+    string mensajeTwo = "¿Esta seguro de la cantidad de jugadores que desea inscribir sean?: ";
+    string mensajeThree = "Presione 's' para confirmar";
+    string mensajeFoor = "Presione 'n' para cambiar la cantidad de jugadores";
+
+    // Leemos la entrada
+
+    cout << endl;
+    cout << mensajeOne << endl;
+    cout << "- ";
+    cin >> Cant;
+    cout << endl;
+
+    cout << mensajeTwo;
+    cin >> confirmacion;
+
+    // Realizamos la confirmacion
+
+    while (true)
+    {
+        if (confirmacion == 'n')
+        {
+            cout << mensajeOne << endl;
+            cout << "- ";
+            cin >> Cant;
+            continue;
+        }
+        break;
+    }
 }
+
+int RandorizarPosicionArreglo(int PosicionRan) // Vamos a randorizar la poscion del arreglo para las preguntas
+{
+}
+
