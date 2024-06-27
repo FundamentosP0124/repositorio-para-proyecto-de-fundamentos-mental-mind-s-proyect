@@ -11,7 +11,6 @@ int RandorizarPosicionArreglo(int);
 int SelecionTemas(int);
 void temas();
 
-
 int main(void)
 {
     menu();
@@ -49,38 +48,33 @@ void menu()
 int cantidadJugadores(int Cant) // Obtendremos la cantiad de jugadores con los que desean iniciar
 {
 
+   int Cant;
     char confirmacion;
 
     // Almacenar mensajes para evitar repetirlos
-
     string mensajeOne = "Ingrese la cantidad de jugadores que desean inscribirse.";
-    string mensajeTwo = "¿Esta seguro de la cantidad de jugadores que desea inscribir sean?: ";
-    string mensajeThree = "Presione 's' para confirmar";
-    string mensajeFoor = "Presione 'n' para cambiar la cantidad de jugadores";
+    string mensajeTwo = "¿Está seguro de que la cantidad de jugadores que desea inscribir sea: ";
+    string mensajeThree = "Presione 's' para confirmar, 'n' para cambiar la cantidad de jugadores.";
 
-    // Leemos la entrada
-
-    cout << endl;
-    cout << mensajeOne << endl;
-    cout << "- ";
-    cin >> Cant;
-    cout << endl;
-
-    cout << mensajeTwo;
-    cin >> confirmacion;
-
-    // Realizamos la confirmacion
-
+    // Realizamos la confirmación
     while (true)
     {
-        if (confirmacion == 'n')
+        // Leemos la entrada
+        cout << endl << mensajeOne << endl;
+        cout << "- ";
+        cin >> Cant;
+        cout << endl;
+
+        // Confirmamos la cantidad
+        cout << mensajeTwo << Cant << "?" << endl;
+        cout << mensajeThree << endl;
+        cout << "- ";
+        cin >> confirmacion;
+
+        if (confirmacion == 's')
         {
-            cout << mensajeOne << endl;
-            cout << "- ";
-            cin >> Cant;
-            continue;
+            break; // Salir del bucle si la confirmación es 's'
         }
-        break;
     }
 }
 
@@ -93,10 +87,6 @@ int RandorizarPosicionArreglo(int PosicionRan) // Vamos a randorizar la poscion 
     srand(time(0));
 
     int posicionAletoria = rand() % 5;
-
-    // Texteo para ver si el valor si se genera de forma correcta
-
-    cout << "Posicion" << posicionAletoria;
 
     // Le regresamos el valor a la funcion para ser utilizada mas adelante
     PosicionRan = posicionAletoria;
@@ -145,4 +135,35 @@ void temas()
     {
         cout << arre[i] << endl;
     }
+}
+
+int ExtraerPuntuacion() // Sistema principal para extraer los puntos obtenidos por los jugadores
+{
+}
+
+int ModalidadJuego(int Opcion) //Selecciona de la modalidad del juego 
+{
+
+    
+    string mensajeOne = "Seleccione con modalidad desean jugar.";
+    string mensajeTwoo = "Seleccione con que modalidad desea jugar.";
+
+    int Cantiad;
+
+    cantidadJugadores(Cantiad);
+
+    if (Cantiad == 1)
+    {
+        cout << mensajeOne << endl;
+    }else
+    {
+        cout << mensajeTwoo << endl;
+    }
+
+    cout << "Las modalidades disposnibles son:" << endl;
+    cout << " 1 - HASTA FINALIZAR" << endl;
+    cout << " 2 - CON LIMITES DE DERROTAS (3) MAXIMO" << endl;
+
+    cin >> Opcion;
+
 }
