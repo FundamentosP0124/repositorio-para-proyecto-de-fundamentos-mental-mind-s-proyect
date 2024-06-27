@@ -102,15 +102,30 @@ int SelecionTemas(int temaSeleccionado) // Seleccionar los temas que los jugador
 
     char confirmacion;
 
+    int Cantiad;
+
     // Almacenar mensajes para evitar repetirlos
-    string mensajeOne = "Seleccione los temas con los que desean jugar.";
-    string mensajeTwo = "Recuerden que el tema seleccionado aplicará para todas las preguntas a todos los jugadores.";
+    string mensajeOne = "Seleccione el tema con el que desea jugar.";
+    string mensajeTwo = "Importante: El tema seleccionado aplicará para todas las preguntas a todos los jugadores."; // Plural
     string mensajeThree = "¿Está seguro de que desea seleccionar este tema?";
     string mensajeFour = "Presione 's' para confirmar";
     string mensajeFive = "Presione 'n' para cambiar la selección del tema";
+    string mensajeSix = "Seleccionen el tema con el que desean jugar.";
+    string mensajeSeven = "Importante: El tema seleccionado aplicará para todas las preguntas."; // Individual
 
-    cout << mensajeOne << endl;
-    cout << mensajeTwo << endl;
+    cantidadJugadores(Cantiad);
+
+    if (Cantiad == 1)
+    {
+        cout << mensajeOne << endl;
+        cout << mensajeSeven << endl;
+    }
+    else
+    {
+        cout << mensajeSix << endl;
+        cout << mensajeTwo << endl;
+    }
+
     temas();
 
     while (true)
@@ -128,7 +143,17 @@ int SelecionTemas(int temaSeleccionado) // Seleccionar los temas que los jugador
         }
         else if (confirmacion == 'n')
         {
-            cout << mensajeOne << endl;
+            if (Cantiad == 1)
+            {
+                cout << mensajeOne << endl;
+                cout << mensajeSeven << endl;
+            }
+            else
+            {
+                cout << mensajeSix << endl;
+                cout << mensajeTwo << endl;
+            }
+            
             temas();
         }
     }
@@ -140,7 +165,7 @@ void temas()
 {
     string arre[4] = {"TEMA: FUTBOL", "TEMA: MITOLOGIA", "TEMA: GEOGRAFIA", "TEMA: CULTURA GENERAL"};
 
-    cout << "    TEMAS   ";
+    cout << "        TEMAS       " << endl;
 
     for (int i = 0; i < 4; i++)
     {
