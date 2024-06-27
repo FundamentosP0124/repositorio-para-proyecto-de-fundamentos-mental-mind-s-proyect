@@ -48,7 +48,7 @@ void menu()
 int cantidadJugadores(int Cant) // Obtendremos la cantiad de jugadores con los que desean iniciar
 {
 
-   int Cant;
+    int Cant;
     char confirmacion;
 
     // Almacenar mensajes para evitar repetirlos
@@ -60,7 +60,8 @@ int cantidadJugadores(int Cant) // Obtendremos la cantiad de jugadores con los q
     while (true)
     {
         // Leemos la entrada
-        cout << endl << mensajeOne << endl;
+        cout << endl
+             << mensajeOne << endl;
         cout << "- ";
         cin >> Cant;
         cout << endl;
@@ -76,6 +77,8 @@ int cantidadJugadores(int Cant) // Obtendremos la cantiad de jugadores con los q
             break; // Salir del bucle si la confirmación es 's'
         }
     }
+
+    return Cant;
 }
 
 // Esta funcion se debe repetir para cada arreglo de cada nivel y se utilizara para las preguntas de todos los temas
@@ -90,6 +93,8 @@ int RandorizarPosicionArreglo(int PosicionRan) // Vamos a randorizar la poscion 
 
     // Le regresamos el valor a la funcion para ser utilizada mas adelante
     PosicionRan = posicionAletoria;
+
+    return PosicionRan;
 }
 
 int SelecionTemas(int temaSeleccionado) // Seleccionar los temas que los jugadores desean jugar
@@ -97,37 +102,43 @@ int SelecionTemas(int temaSeleccionado) // Seleccionar los temas que los jugador
 
     char confirmacion;
 
-    string mensajeOne = "Selecccione los temas con los que desean jugar.";
-    string mensajeTwo = "Recuerden que el tema seleccionado aplicara para todas las preguntas a todo los jugadores.";
-    string mensajeThree = "¿Esta seguro de la cantidad de jugadores que desea inscribir sean?: ";
-    string mensajeFoor = "Presione 's' para confirmar";
-    string mensajeFive = "Presione 'n' para cambiar la cantidad de jugadores";
+    // Almacenar mensajes para evitar repetirlos
+    string mensajeOne = "Seleccione los temas con los que desean jugar.";
+    string mensajeTwo = "Recuerden que el tema seleccionado aplicará para todas las preguntas a todos los jugadores.";
+    string mensajeThree = "¿Está seguro de que desea seleccionar este tema?";
+    string mensajeFour = "Presione 's' para confirmar";
+    string mensajeFive = "Presione 'n' para cambiar la selección del tema";
 
     cout << mensajeOne << endl;
     cout << mensajeTwo << endl;
     temas();
 
-    cout << "- ";
-    cin >> temaSeleccionado;
-
-    // Realizamos la confirmacion
-
     while (true)
     {
-        if (confirmacion == 'n')
+        cout << "- ";
+        cin >> temaSeleccionado;
+        cout << mensajeThree << endl;
+        cout << mensajeFour << " / " << mensajeFive << endl;
+        cout << "- ";
+        cin >> confirmacion;
+
+        if (confirmacion == 's')
+        {
+            break; // Salir del bucle si la confirmación es 's'
+        }
+        else if (confirmacion == 'n')
         {
             cout << mensajeOne << endl;
-            cout << "- ";
-            cin >> temaSeleccionado;
-            continue;
+            temas();
         }
-        break;
     }
+
+    return temaSeleccionado;
 }
 
 void temas()
 {
-    string arre[4] = {"TEMA 1", "TEMA 2", "TEMA 3", "TEMA 4"};
+    string arre[4] = {"TEMA: FUTBOL", "TEMA: MITOLOGIA", "TEMA: GEOGRAFIA", "TEMA: CULTURA GENERAL"};
 
     cout << "    TEMAS   ";
 
@@ -141,10 +152,9 @@ int ExtraerPuntuacion() // Sistema principal para extraer los puntos obtenidos p
 {
 }
 
-int ModalidadJuego(int Opcion) //Selecciona de la modalidad del juego 
+int ModalidadJuego(int Opcion) // Selecciona de la modalidad del juego
 {
 
-    
     string mensajeOne = "Seleccione con modalidad desean jugar.";
     string mensajeTwoo = "Seleccione con que modalidad desea jugar.";
 
@@ -155,7 +165,8 @@ int ModalidadJuego(int Opcion) //Selecciona de la modalidad del juego
     if (Cantiad == 1)
     {
         cout << mensajeOne << endl;
-    }else
+    }
+    else
     {
         cout << mensajeTwoo << endl;
     }
@@ -166,4 +177,5 @@ int ModalidadJuego(int Opcion) //Selecciona de la modalidad del juego
 
     cin >> Opcion;
 
+    return Opcion;
 }
