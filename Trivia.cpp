@@ -5,11 +5,12 @@
 
 using namespace std;
 
-/*Juego de trivia de preguntas al azar con 3 niveles de dificultad y un maximo de 3 equivocaciones
-de acuerdo a la modalidad seleccionada del juego sin es por limites de inaciertos puntuacion final
-segun si es el modo multijugador o de manera individual*/
-
 void menu();
+int cantidadJugadores(int);
+int RandorizarPosicionArreglo(int);
+int SelecionTemas(int);
+void temas();
+
 
 int main(void)
 {
@@ -134,7 +135,7 @@ int SelecionTemas(int temaSeleccionado) // Seleccionar los temas que los jugador
     }
 }
 
-void temas(void)
+void temas()
 {
     string arre[4] = {"TEMA 1", "TEMA 2", "TEMA 3", "TEMA 4"};
 
