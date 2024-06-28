@@ -252,7 +252,12 @@ int juegoIndividual(int RespuestasIncorrectas, int RespuestasCorrectas) // En es
     } while (RespIncorrectas != 3);
 
     RespuestasCorrectas = RespCorrectas;
-    RespuestasIncorrectas= RespIncorrectas;
+    RespuestasIncorrectas = RespIncorrectas;
 
     return RespuestasCorrectas, RespuestasIncorrectas;
+}
+
+int multijugador() //Es el are en que la jugabilidad de las preguntas sera entre 2 o mas participantes
+{
+
 }
