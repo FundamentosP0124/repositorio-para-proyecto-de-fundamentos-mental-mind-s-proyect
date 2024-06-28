@@ -10,6 +10,7 @@ int cantidadJugadores(int);
 int RandorizarPosicionArreglo(int);
 int SelecionTemas(int);
 void temas();
+int ModalidadJuego(int);
 
 int main(void)
 {
@@ -47,8 +48,6 @@ void menu()
 
 int cantidadJugadores(int Cant) // Obtendremos la cantiad de jugadores con los que desean iniciar
 {
-
-    int Cant;
     char confirmacion;
 
     // Almacenar mensajes para evitar repetirlos
@@ -153,7 +152,7 @@ int SelecionTemas(int temaSeleccionado) // Seleccionar los temas que los jugador
                 cout << mensajeSix << endl;
                 cout << mensajeTwo << endl;
             }
-            
+
             temas();
         }
     }
@@ -173,14 +172,12 @@ void temas()
     }
 }
 
-int ExtraerPuntuacion() // Sistema principal para extraer los puntos obtenidos por los jugadores
-{
-}
+
 
 int ModalidadJuego(int Opcion) // Selecciona de la modalidad del juego
 {
 
-    string mensajeOne = "Seleccione con modalidad desean jugar.";
+    string mensajeOne = "Seleccione con que modalidad desean jugar.";
     string mensajeTwoo = "Seleccione con que modalidad desea jugar.";
 
     int Cantiad;
