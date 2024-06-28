@@ -243,6 +243,12 @@ int juegoIndividual(int RespuestasIncorrectas, int RespuestasCorrectas) // En es
 
         cout << "NIVEL 2 - INTERMEDIO" << endl;
 
+        for (int i = 0; i < 4; i++)
+        {
+            cout << arrePreguntas[i];
+            cin >> respuesta;
+        }
+
     } while (RespIncorrectas != 3);
 
     RespuestasCorrectas = RespCorrectas;
