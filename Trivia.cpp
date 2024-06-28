@@ -172,8 +172,6 @@ void temas()
     }
 }
 
-
-
 int ModalidadJuego(int Opcion) // Selecciona de la modalidad del juego
 {
 
@@ -200,4 +198,55 @@ int ModalidadJuego(int Opcion) // Selecciona de la modalidad del juego
     cin >> Opcion;
 
     return Opcion;
+}
+
+int ConteoIncorrectas()
+{
+}
+
+int juegoIndividual(int RespuestasIncorrectas, int RespuestasCorrectas) // En esta funcion se llevara acabo de la jugabilidad individual
+{
+    int RespIncorrectas = 0, RespCorrectas = 0;
+
+    do
+    {
+
+        int respuesta;
+
+        string arrePreguntas[] = {
+            "Pregunta 1",
+            "Pregunta 2",
+            "Pregunta 3",
+            "Pregunta 4",
+            "Pregunta 5",
+        };
+
+        string arreRespuestas[] = {
+            "Respuesta 1",
+            "Respuesta 2",
+            "Respuesta 3",
+            "Respuesta 4",
+            "Respuesta 5",
+        };
+
+        cout << "__¿ESTAS LISTO PARA EMPEZAR?__" << endl;
+        cout << "__Presiona enter para empezar__";
+        cin.get();
+
+        cout << "NIVEL 1 - FACIL" << endl;
+
+        for (int i = 0; i < 4; i++)
+        {
+            cout << arrePreguntas[i];
+            cin >> respuesta;
+        }
+
+        cout << "NIVEL 2 - INTERMEDIO" << endl;
+
+    } while (RespIncorrectas != 3);
+
+    RespuestasCorrectas = RespCorrectas;
+    RespuestasIncorrectas= RespIncorrectas;
+
+    return RespuestasCorrectas, RespuestasIncorrectas;
 }
