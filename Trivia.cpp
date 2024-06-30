@@ -2,8 +2,11 @@
 #include <cstdlib>
 #include <ctime>
 #include <string>
+#include <vector>
 
 using namespace std;
+
+const int Num_Preguntas = 5;
 
 void menu();
 int cantidadJugadores(int);
@@ -200,64 +203,40 @@ int ModalidadJuego(int Opcion) // Selecciona de la modalidad del juego
     return Opcion;
 }
 
-int ConteoIncorrectas()
-{
-}
+void LlamarArrePreguntas(string enviarPreguntas[], string enviarRespuestas[])
+{ // Bosquejo para utilizar los datos de la libreria en las funciones de jugar
 
-int juegoIndividual(int RespuestasIncorrectas, int RespuestasCorrectas) // En esta funcion se llevara acabo de la jugabilidad individual
-{
-    int RespIncorrectas = 0, RespCorrectas = 0;
+    // Tema 1:
 
-    do
+    /*Hay que simular que las preguntas son estas porque se necesita este formato
+   para poder validar las respuestas cuando el juego se este ejecutando*/
+
+    string arrePreguntas[Num_Preguntas] = {
+        "¿Cual es la capital de Francia?\n1. Berlin\n2. Madrid\n3. Paris",
+        "¿Cual es el rio mas largo del mundo?\n1. Nilo\n2. Amazonas\n3. Yangtse",
+        "¿Quien escribio Cien años de soledad?\n1. Gabriel García Marquez\n2. Mario Vargas Llosa\n3. Julio Cortazar",
+        "¿En que año llegó el hombre a la Luna?\n1. 1965\n2. 1969\n3. 1971",
+        "¿Cual es el planeta mas cercano al sol?\n1. Venus\n2. Tierra\n3. Mercurio"};
+
+    /*El indice de las respuesta deben estar en el orden de las respuestas correctas segun la
+    posicion que se coloco la respuesta correcta en el arreglo de las preguntas*/
+
+    string arreRespuestas[Num_Preguntas] = {
+        "3",
+        "2",
+        "1",
+        "2",
+        "3"};
+
+    for (int i = 0; i < Num_Preguntas; i++)
     {
+        enviarPreguntas[i] = arrePreguntas[i];
+        enviarRespuestas[i] = arreRespuestas[i];
+    }
 
-        int respuesta;
-
-        string arrePreguntas[] = {
-            "Pregunta 1",
-            "Pregunta 2",
-            "Pregunta 3",
-            "Pregunta 4",
-            "Pregunta 5",
-        };
-
-        string arreRespuestas[] = {
-            "Respuesta 1",
-            "Respuesta 2",
-            "Respuesta 3",
-            "Respuesta 4",
-            "Respuesta 5",
-        };
-
-        cout << "__¿ESTAS LISTO PARA EMPEZAR?__" << endl;
-        cout << "__Presiona enter para empezar__";
-        cin.get();
-
-        cout << "NIVEL 1 - FACIL" << endl;
-
-        for (int i = 0; i < 4; i++)
-        {
-            cout << arrePreguntas[i];
-            cin >> respuesta;
-        }
-
-        cout << "NIVEL 2 - INTERMEDIO" << endl;
-
-        for (int i = 0; i < 4; i++)
-        {
-            cout << arrePreguntas[i];
-            cin >> respuesta;
-        }
-
-    } while (RespIncorrectas != 3);
-
-    RespuestasCorrectas = RespCorrectas;
-    RespuestasIncorrectas = RespIncorrectas;
-
-    return RespuestasCorrectas, RespuestasIncorrectas;
+    // Tema 2: ...
 }
 
-int multijugador() //Es el are en que la jugabilidad de las preguntas sera entre 2 o mas participantes
+int multijugador() // Es el are en que la jugabilidad de las preguntas sera entre 2 o mas participantes
 {
-
 }
