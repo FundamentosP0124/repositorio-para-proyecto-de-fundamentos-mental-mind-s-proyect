@@ -14,6 +14,9 @@ int RandorizarPosicionArreglo(int);
 int SelecionTemas(int);
 void temas();
 int ModalidadJuego(int);
+void LlamarArrePreguntas(string, string);
+int juegoIndividual();
+
 
 int main(void)
 {
@@ -221,6 +224,8 @@ int juegoIndividual()
     cin.ignore();
     cin.get(); // Esperar a que el usuario presione enter
 
+    cout << "NIVEL FACIL" << endl;
+
     for (int i = 0; i < Num_Preguntas; i++)
     {
         cout << "Pregunta numero: " << i + 1 << endl;
@@ -229,7 +234,7 @@ int juegoIndividual()
         cout << "¿Cual es tu respuesta? (Ingresa el número de la opcion): ";
         cin >> Guardarespuesta;
 
-        opcionCorrecta = stoi(respuestas[i]); //Convertir las respuestas en caracteres enteros para poder compararlas con la respuesta ingresada
+        opcionCorrecta = stoi(respuestas[i]); // Convertir las respuestas en caracteres enteros para poder compararlas con la respuesta ingresada
 
         // Verificar que la respuesta ingresada sea correcta
         if (Guardarespuesta == opcionCorrecta)
