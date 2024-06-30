@@ -203,6 +203,62 @@ int ModalidadJuego(int Opcion) // Selecciona de la modalidad del juego
     return Opcion;
 }
 
+int juegoIndividual()
+{
+    int RespIncorrectas = 0, RespCorrectas = 0;
+    string preguntas[Num_Preguntas];
+    string respuestas[Num_Preguntas];
+
+    // Llamar a la función para obtener preguntas y respuestas
+    LlamarArrePreguntas(preguntas, respuestas);
+
+    int opcionCorrecta; // Variable para almacenar la respuesta correcta como numero
+
+    int Guardarespuesta;
+
+    cout << "__¿ESTAS LISTO PARA EMPEZAR?__" << endl;
+    cout << "__Presiona enter para empezar__";
+    cin.ignore();
+    cin.get(); // Esperar a que el usuario presione enter
+
+    for (int i = 0; i < Num_Preguntas; i++)
+    {
+        cout << "Pregunta numero: " << i + 1 << endl;
+        cout << preguntas[i] << endl;
+
+        cout << "¿Cual es tu respuesta? (Ingresa el número de la opcion): ";
+        cin >> Guardarespuesta;
+
+        opcionCorrecta = stoi(respuestas[i]); //Convertir las respuestas en caracteres enteros para poder compararlas con la respuesta ingresada
+
+        // Verificar que la respuesta ingresada sea correcta
+        if (Guardarespuesta == opcionCorrecta)
+        {
+            RespCorrectas++;
+            cout << "Correcto" << endl;
+        }
+        else
+        {
+            RespIncorrectas++;
+            cout << "Incorrecto" << endl;
+        }
+
+        // Verificar si el usuario ha alcanzado el límite de respuestas incorrectas
+        if (RespIncorrectas == 3)
+        {
+            break;
+        }
+    }
+
+    cout << "Juego terminado." << endl;
+    cout << "Respuestas correctas: " << RespCorrectas << endl;
+    cout << "Respuestas incorrectas: " << RespIncorrectas << endl;
+
+    return RespCorrectas; // Devolver la cantidad de respuestas correctas que obtuvo
+}
+
+// ESTE ES SOLO UNA CONSTRUCCION BORRADOR PARA HACER LA FUNCIONALIDAD DE LAS PREGUNTAS Y RESPUESTAS
+
 void LlamarArrePreguntas(string enviarPreguntas[], string enviarRespuestas[])
 { // Bosquejo para utilizar los datos de la libreria en las funciones de jugar
 
