@@ -20,7 +20,9 @@ int juegoIndividual();
 
 int main(void)
 {
-    menu();
+    int respuestasCorrectas = juegoIndividual();
+    cout << "El juego ha terminado." << endl;
+    cout << "Respuestas correctas: " << respuestasCorrectas << endl;
 
     return 0;
 }
@@ -206,17 +208,38 @@ int ModalidadJuego(int Opcion) // Selecciona de la modalidad del juego
     return Opcion;
 }
 
-int juegoIndividual()
-{
+void LlamarArrePreguntas(string (&enviarPreguntas)[Num_Preguntas], string (&enviarRespuestas)[Num_Preguntas]) {
+    string arrePreguntas[Num_Preguntas] = {
+        "¿Cual es la capital de Francia?\n1. Berlin\n2. Madrid\n3. Paris",
+        "¿Cual es el rio mas largo del mundo?\n1. Nilo\n2. Amazonas\n3. Yangtse",
+        "¿Quien escribio Cien años de soledad?\n1. Gabriel Garcia Marquez\n2. Mario Vargas Llosa\n3. Julio Cortazar",
+        "¿En que año llego el hombre a la Luna?\n1. 1965\n2. 1969\n3. 1971",
+        "¿Cual es el planeta mas cercano al sol?\n1. Venus\n2. Tierra\n3. Mercurio"
+    };
+
+    string arreRespuestas[Num_Preguntas] = {
+        "3",
+        "2",
+        "1",
+        "2",
+        "3"
+    };
+
+    for (int i = 0; i < Num_Preguntas; i++) {
+        enviarPreguntas[i] = arrePreguntas[i];
+        enviarRespuestas[i] = arreRespuestas[i];
+    }
+}
+
+int juegoIndividual() {
     int RespIncorrectas = 0, RespCorrectas = 0;
     string preguntas[Num_Preguntas];
     string respuestas[Num_Preguntas];
 
-    // Llamar a la función para obtener preguntas y respuestas
+    // Llamar a la funcion para obtener preguntas y respuestas
     LlamarArrePreguntas(preguntas, respuestas);
 
-    int opcionCorrecta; // Variable para almacenar la respuesta correcta como numero
-
+    int opcionCorrecta;
     int Guardarespuesta;
 
     cout << "__¿ESTAS LISTO PARA EMPEZAR?__" << endl;
@@ -226,31 +249,26 @@ int juegoIndividual()
 
     cout << "NIVEL FACIL" << endl;
 
-    for (int i = 0; i < Num_Preguntas; i++)
-    {
+    for (int i = 0; i < Num_Preguntas; i++) {
         cout << "Pregunta numero: " << i + 1 << endl;
         cout << preguntas[i] << endl;
 
-        cout << "¿Cual es tu respuesta? (Ingresa el número de la opcion): ";
+        cout << "¿Cual es tu respuesta? (Ingresa el numero de la opcion): ";
         cin >> Guardarespuesta;
 
         opcionCorrecta = stoi(respuestas[i]); // Convertir las respuestas en caracteres enteros para poder compararlas con la respuesta ingresada
 
         // Verificar que la respuesta ingresada sea correcta
-        if (Guardarespuesta == opcionCorrecta)
-        {
+        if (Guardarespuesta == opcionCorrecta) {
             RespCorrectas++;
             cout << "Correcto" << endl;
-        }
-        else
-        {
+        } else {
             RespIncorrectas++;
             cout << "Incorrecto" << endl;
         }
 
-        // Verificar si el usuario ha alcanzado el límite de respuestas incorrectas
-        if (RespIncorrectas == 3)
-        {
+        // Verificar si el usuario ha alcanzado el limite de respuestas incorrectas
+        if (RespIncorrectas == 3) {
             break;
         }
     }
@@ -262,41 +280,6 @@ int juegoIndividual()
     return RespCorrectas; // Devolver la cantidad de respuestas correctas que obtuvo
 }
 
-// ESTE ES SOLO UNA CONSTRUCCION BORRADOR PARA HACER LA FUNCIONALIDAD DE LAS PREGUNTAS Y RESPUESTAS
-
-void LlamarArrePreguntas(string enviarPreguntas[], string enviarRespuestas[])
-{ // Bosquejo para utilizar los datos de la libreria en las funciones de jugar
-
-    // Tema 1:
-
-    /*Hay que simular que las preguntas son estas porque se necesita este formato
-   para poder validar las respuestas cuando el juego se este ejecutando*/
-
-    string arrePreguntas[Num_Preguntas] = {
-        "¿Cual es la capital de Francia?\n1. Berlin\n2. Madrid\n3. Paris",
-        "¿Cual es el rio mas largo del mundo?\n1. Nilo\n2. Amazonas\n3. Yangtse",
-        "¿Quien escribio Cien años de soledad?\n1. Gabriel García Marquez\n2. Mario Vargas Llosa\n3. Julio Cortazar",
-        "¿En que año llegó el hombre a la Luna?\n1. 1965\n2. 1969\n3. 1971",
-        "¿Cual es el planeta mas cercano al sol?\n1. Venus\n2. Tierra\n3. Mercurio"};
-
-    /*El indice de las respuesta deben estar en el orden de las respuestas correctas segun la
-    posicion que se coloco la respuesta correcta en el arreglo de las preguntas*/
-
-    string arreRespuestas[Num_Preguntas] = {
-        "3",
-        "2",
-        "1",
-        "2",
-        "3"};
-
-    for (int i = 0; i < Num_Preguntas; i++)
-    {
-        enviarPreguntas[i] = arrePreguntas[i];
-        enviarRespuestas[i] = arreRespuestas[i];
-    }
-
-    // Tema 2: ...
-}
 
 int multijugador() // Es el are en que la jugabilidad de las preguntas sera entre 2 o mas participantes
 {
