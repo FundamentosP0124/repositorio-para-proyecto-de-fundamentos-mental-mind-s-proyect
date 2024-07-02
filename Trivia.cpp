@@ -3,6 +3,8 @@
 #include <ctime>
 #include <string>
 #include <vector>
+#include <cctype>
+#include <limits>
 
 using namespace std;
 
@@ -15,6 +17,8 @@ const int Num_Preguntas = 5;
 vector<string> nombres;   // Conservar los nombres de los jugadores en caso de que repitan el ciclo del juego y agreguen nuevos jugadores
 vector<int> puntuaciones; // Conservar las puntuaciones con el mismo fin
 
+// DECLARACIONES
+
 void menu();
 int cantidadJugadores(int);
 int SelecionTemas(int);
@@ -22,27 +26,47 @@ void temas();
 int ModalidadJuego(int);
 void LlamarArrePreguntas(string, string);
 int juegoIndividual();
+int ValidarNumeroCantJugadores();
+string ValidarEntradasText();
+int validarNumeroTemas(int, int);
 
 int main(void)
 {
-    int respuestasCorrectas = juegoIndividual();
-    cout << "El juego ha terminado." << endl;
-    cout << "Respuestas correctas: " << respuestasCorrectas << endl;
+    menu();
 
     return 0;
 }
 
 string ValidarEntradasText()
-{ // Necesitamos validar entradas de texto desde teclado para que no surgan errores en el procesamiento de datos en las funciones
+{
+    string texto;
+    while (true)
+    {
+        cout << "- ";
+        getline(cin, texto);
+
+        bool esValido = true;
+        for (char c : texto)
+        {
+            if (!isalpha(c) && c != ' ') // Verificamos cada uno de los caracteres para saber si no es alfabetico
+            {
+                esValido = false;
+                break;
+            }
+        }
+
+        if (esValido && !texto.empty())
+        {
+            return texto;
+        }
+        else
+        {
+            cout << "Entrada invalida. Por favor, ingrese solo letras." << endl;
+        }
+    }
 }
 
-#include <iostream>
-#include <string>
-#include <limits>
-
-using namespace std;
-
-int ValidarEntradasNum()
+int ValidarNumeroCantJugadores()
 {
     int numero;
     while (true)
@@ -52,9 +76,10 @@ int ValidarEntradasNum()
 
         if (cin.fail() || numero <= 0)
         {
-            cin.clear();                                         // Limpia el error
+            cin.clear(); // Limpia el error
+
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignora la entrada inválida
-            cout << "Entrada inválida. Por favor, ingrese un número entero positivo." << endl;
+            cout << "Entrada invalida. Por favor, ingrese un numero entero positivo." << endl;
         }
         else
         {
@@ -64,7 +89,29 @@ int ValidarEntradasNum()
     }
 }
 
-void menu()
+int validarNumeroTemas(int min, int max)
+{
+    int numero;
+    while (true)
+    {
+        cin >> numero;
+        if (cin.fail() || numero < min || numero > max)
+        {
+            cin.clear(); // Clear the error flag
+
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Entrada invalida. Por favor, ingrese un numero entre " << min << " y " << max << ": ";
+        }
+        else
+        {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            break;
+        }
+    }
+    return numero;
+}
+
+void menu() // Agregar la funcion de validar la opcion ingresada
 {
 
     int opcion;
@@ -97,7 +144,7 @@ int cantidadJugadores(int Cant)
 
     // Almacenar mensajes para evitar repetirlos
     string mensajeOne = "Ingrese la cantidad de jugadores que desean inscribirse.";
-    string mensajeTwo = "¿Está seguro de que la cantidad de jugadores que desea inscribir sea: ";
+    string mensajeTwo = "¿Esta seguro de que la cantidad de jugadores que desea inscribir sea: ";
     string mensajeThree = "Presione 's' para confirmar, 'n' para cambiar la cantidad de jugadores.";
 
     // Realizamos la confirmación
@@ -107,7 +154,7 @@ int cantidadJugadores(int Cant)
         cout << endl
              << mensajeOne << endl;
 
-        Cant = ValidarEntradasNum(); // Llama a la función de validación para obtener un número válido
+        Cant = ValidarNumeroCantJugadores(); // Llama a la función de validación para obtener un número válido
 
         // Confirmamos la cantidad
         cout << endl;
@@ -120,28 +167,26 @@ int cantidadJugadores(int Cant)
 
         if (confirmacion == 's' || confirmacion == 'S')
         {
-            break; // Salir del bucle si la confirmación es 's' o 'S'
+            break; // Salir del bucle si la confirmacion es 's' o 'S'
         }
     }
 
     return Cant;
 }
 
-int SelecionTemas(int temaSeleccionado) // Seleccionar los temas que los jugadores desean jugar
+int SelecionTemas(int temaSeleccionado)
 {
-
     char confirmacion;
-
     int Cantiad;
 
     // Almacenar mensajes para evitar repetirlos
     string mensajeOne = "Seleccione el tema con el que desea jugar.";
-    string mensajeTwo = "Importante: El tema seleccionado aplicará para todas las preguntas a todos los jugadores."; // Plural
-    string mensajeThree = "¿Está seguro de que desea seleccionar este tema?";
+    string mensajeTwo = "Importante: El tema seleccionado aplicara para todas las preguntas a todos los jugadores.";
+    string mensajeThree = "¿Esta seguro de que desea seleccionar este tema?";
     string mensajeFour = "Presione 's' para confirmar";
-    string mensajeFive = "Presione 'n' para cambiar la selección del tema";
+    string mensajeFive = "Presione 'n' para cambiar la seleccion del tema";
     string mensajeSix = "Seleccionen el tema con el que desean jugar.";
-    string mensajeSeven = "Importante: El tema seleccionado aplicará para todas las preguntas."; // Individual
+    string mensajeSeven = "Importante: El tema seleccionado aplicara para todas las preguntas.";
 
     cantidadJugadores(Cantiad);
 
@@ -161,7 +206,7 @@ int SelecionTemas(int temaSeleccionado) // Seleccionar los temas que los jugador
     while (true)
     {
         cout << "- ";
-        cin >> temaSeleccionado;
+        temaSeleccionado = validarNumeroTemas(1, 4); // Validamos que el tema esté entre 1 y 4
         cout << mensajeThree << endl;
         cout << mensajeFour << " / " << mensajeFive << endl;
         cout << "- ";
@@ -193,7 +238,7 @@ int SelecionTemas(int temaSeleccionado) // Seleccionar los temas que los jugador
 
 void temas()
 {
-    string arre[4] = {"TEMA: FUTBOL", "TEMA: MITOLOGIA", "TEMA: GEOGRAFIA", "TEMA: CULTURA GENERAL"};
+    string arre[4] = {"1 - TEMA: FUTBOL", "2 - TEMA: MITOLOGIA", "3 - TEMA: GEOGRAFIA", "4 - TEMA: CULTURA GENERAL"};
 
     cout << "        TEMAS       " << endl;
 
