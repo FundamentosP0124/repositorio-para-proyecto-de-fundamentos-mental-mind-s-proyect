@@ -12,12 +12,11 @@ const int Num_Preguntas = 5;
 
 // B O R R A D O R
 
-vector<string> nombres; // Conservar los nombres de los jugadores en caso de que repitan el ciclo del juego y agreguen nuevos jugadores
+vector<string> nombres;   // Conservar los nombres de los jugadores en caso de que repitan el ciclo del juego y agreguen nuevos jugadores
 vector<int> puntuaciones; // Conservar las puntuaciones con el mismo fin
 
 void menu();
 int cantidadJugadores(int);
-int RandorizarPosicionArreglo(int);
 int SelecionTemas(int);
 void temas();
 int ModalidadJuego(int);
@@ -31,6 +30,38 @@ int main(void)
     cout << "Respuestas correctas: " << respuestasCorrectas << endl;
 
     return 0;
+}
+
+string ValidarEntradasText()
+{ // Necesitamos validar entradas de texto desde teclado para que no surgan errores en el procesamiento de datos en las funciones
+}
+
+#include <iostream>
+#include <string>
+#include <limits>
+
+using namespace std;
+
+int ValidarEntradasNum()
+{
+    int numero;
+    while (true)
+    {
+        cout << "- ";
+        cin >> numero;
+
+        if (cin.fail() || numero <= 0)
+        {
+            cin.clear();                                         // Limpia el error
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignora la entrada inválida
+            cout << "Entrada inválida. Por favor, ingrese un número entero positivo." << endl;
+        }
+        else
+        {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            return numero; // Retorna el número válido
+        }
+    }
 }
 
 void menu()
@@ -60,7 +91,7 @@ void menu()
     }
 }
 
-int cantidadJugadores(int Cant) // Obtendremos la cantiad de jugadores con los que desean iniciar
+int cantidadJugadores(int Cant)
 {
     char confirmacion;
 
@@ -75,39 +106,25 @@ int cantidadJugadores(int Cant) // Obtendremos la cantiad de jugadores con los q
         // Leemos la entrada
         cout << endl
              << mensajeOne << endl;
-        cout << "- ";
-        cin >> Cant;
-        cout << endl;
+
+        Cant = ValidarEntradasNum(); // Llama a la función de validación para obtener un número válido
 
         // Confirmamos la cantidad
+        cout << endl;
         cout << mensajeTwo << Cant << "?" << endl;
         cout << mensajeThree << endl;
         cout << "- ";
-        cin >> confirmacion;
 
-        if (confirmacion == 's')
+        cin >> confirmacion;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpia el buffer
+
+        if (confirmacion == 's' || confirmacion == 'S')
         {
-            break; // Salir del bucle si la confirmación es 's'
+            break; // Salir del bucle si la confirmación es 's' o 'S'
         }
     }
 
     return Cant;
-}
-
-// Esta funcion se debe repetir para cada arreglo de cada nivel y se utilizara para las preguntas de todos los temas
-
-int RandorizarPosicionArreglo(int PosicionRan) // Vamos a randorizar la poscion del arreglo para las preguntas
-{
-    int arre[0];
-
-    srand(time(0));
-
-    int posicionAletoria = rand() % 5;
-
-    // Le regresamos el valor a la funcion para ser utilizada mas adelante
-    PosicionRan = posicionAletoria;
-
-    return PosicionRan;
 }
 
 int SelecionTemas(int temaSeleccionado) // Seleccionar los temas que los jugadores desean jugar
@@ -186,10 +203,8 @@ void temas()
     }
 }
 
-int ModalidadJuego() // Selecciona de la modalidad del juego
+int ModalidadJuego(int Opcion) // Selecciona de la modalidad del juego
 {
-
-    int Opcion = 0;
 
     string mensajeOne = "Seleccione con que modalidad desean jugar.";
     string mensajeTwoo = "Seleccione con que modalidad desea jugar.";
