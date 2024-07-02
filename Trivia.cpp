@@ -25,7 +25,6 @@ int SelecionTemas(int);
 void temas();
 int ModalidadJuego(int);
 void LlamarArrePreguntas(string, string);
-int juegoIndividual();
 int ValidarNumeros();
 string ValidarEntradasText();
 int validarNumeroRango(int, int);
@@ -305,15 +304,15 @@ struct ResultadosIndividual
     int RespCorrectas;
 };
 
-
-int juegoIndividual()
+ResultadosIndividual juegoIndividual()
 { // Funcion con limites de desaciertos y se necesita modificar para la configuracion seleccionada
+
+    ResultadosIndividual resultados = {0, 0};
 
     int ConfOpcion = 0;
 
     ModalidadJuego(ConfOpcion);
 
-    int RespIncorrectas = 0, RespCorrectas = 0;
     string preguntas[Num_Preguntas];
     string respuestas[Num_Preguntas];
 
@@ -342,12 +341,12 @@ int juegoIndividual()
         // Verificar que la respuesta ingresada sea correcta
         if (Guardarespuesta == opcionCorrecta)
         {
-            RespCorrectas++;
+            resultados.RespCorrectas++;
             cout << "Correcto" << endl;
         }
         else
         {
-            RespIncorrectas++;
+            resultados.RespIncorrectas++;
             cout << "Incorrecto" << endl;
         }
 
@@ -356,7 +355,7 @@ int juegoIndividual()
         if (ConfOpcion == 2)
         {
             // Verificar si el usuario ha alcanzado el limite de respuestas incorrectas
-            if (RespIncorrectas == 3)
+            if (resultados.RespIncorrectas == 3)
             {
                 break;
             }
@@ -366,7 +365,7 @@ int juegoIndividual()
     cout << "Juego terminado." << endl;
     cout << "Resultados" << endl;
 
-    return RespCorrectas, RespIncorrectas; // Devolver la cantidad de respuestas correctas que obtuvo
+    return resultados; // Devolver la cantidad de respuestas correctas e incorrectas que obtuvo
 }
 
 struct ResultadosMultijugador { //Para poder utilizar los valores en otras funciones para anunciar al ganador necesitamos recuperar los datos en una estructura
