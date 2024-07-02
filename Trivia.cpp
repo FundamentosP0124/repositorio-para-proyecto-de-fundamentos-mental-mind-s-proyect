@@ -30,7 +30,6 @@ int ValidarNumeros();
 string ValidarEntradasText();
 int validarNumeroRango(int, int);
 
-
 int main(void)
 {
     menu();
@@ -80,7 +79,7 @@ int ValidarNumeros()
             cin.clear(); // Limpia el error
 
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignora la entrada invalida
-            cout << "Entrada invalida. Por favor, ingrese numeros que no sean decimales o de cualquier otro tipo. Deben ser enteros positivos." << endl;
+            cout << "Entrada invalida. Por favor, ingrese numeros que no sean decimales o de cualquier otro tipo. Deben ser 1 o 2." << endl;
         }
         else
         {
@@ -99,7 +98,7 @@ int validarNumeroRango(int min, int max)
         cin >> numero;
         if (cin.fail() || numero < min || numero > max)
         {
-            cin.clear(); 
+            cin.clear();
 
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Entrada invalida. Por favor, ingrese una opcion que este entre el rango de: " << min << " y de " << max << ": ";
@@ -148,7 +147,6 @@ int cantidadJugadores(int Cant)
     string mensajeTwo = "¿Esta seguro de: 2 - '2' jugadores.";
     string mensajeThree = "Presione 's' para confirmar, 'n' para cambiar la cantidad de jugadores.";
 
-
     // Realizamos la confirmación
     while (true)
     {
@@ -165,7 +163,7 @@ int cantidadJugadores(int Cant)
         cout << "- ";
 
         cin >> confirmacion;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
         if (confirmacion == 's' || confirmacion == 'S')
         {
@@ -271,9 +269,9 @@ int ModalidadJuego(int Opcion) // Selecciona de la modalidad del juego
     cout << " 1 - HASTA FINALIZAR" << endl;
     cout << " 2 - CON LIMITES DE DERROTAS (3) MAXIMO" << endl;
 
-    Opcion = validarNumeroRango(1,2);
+    Opcion = validarNumeroRango(1, 2);
 
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');     
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     return Opcion;
 }
@@ -300,6 +298,13 @@ void LlamarArrePreguntas(string (&enviarPreguntas)[Num_Preguntas], string (&envi
         enviarRespuestas[i] = arreRespuestas[i];
     }
 }
+
+struct ResultadosIndividual
+{
+    int RespIncorrectas;
+    int RespCorrectas;
+};
+
 
 int juegoIndividual()
 { // Funcion con limites de desaciertos y se necesita modificar para la configuracion seleccionada
@@ -359,12 +364,89 @@ int juegoIndividual()
     }
 
     cout << "Juego terminado." << endl;
-    cout << "Respuestas correctas: " << RespCorrectas << endl;
-    cout << "Respuestas incorrectas: " << RespIncorrectas << endl;
+    cout << "Resultados" << endl;
 
     return RespCorrectas, RespIncorrectas; // Devolver la cantidad de respuestas correctas que obtuvo
 }
 
-int multijugador() // Es el area en que la jugabilidad de las preguntas sera entre 2 o mas participantes con un limite de 5 jugadores
+struct ResultadosMultijugador { //Para poder utilizar los valores en otras funciones para anunciar al ganador necesitamos recuperar los datos en una estructura
+    int RespCorrectasPlayerOne;
+    int RespIncorrectasPlayerOne;
+    int RespCorrectasPlayerTwo;
+    int RespIncorrectasPlayerTwo;
+};
+
+ResultadosMultijugador multijugador() // Retornamos una instancia a la estructura resultados de ambos jugadores
 {
+    ResultadosMultijugador resultados = {0, 0, 0, 0};
+    int ConfOpcion = 0;
+    string preguntas[Num_Preguntas];
+    string respuestas[Num_Preguntas];
+
+    ModalidadJuego(ConfOpcion);
+    LlamarArrePreguntas(preguntas, respuestas);
+
+    bool playerOneActive = true;
+    bool playerTwoActive = true;
+
+    for (int i = 0; i < Num_Preguntas; i++) // Definimos la cantidad de veces que se repetirá según la cantidad de preguntas
+    {
+        // Player One
+        if (playerOneActive) {
+            cout << "Pregunta numero " << i + 1 << " para el Jugador 1:" << endl;
+            cout << preguntas[i] << endl;
+
+            cout << "¿Cual es tu respuesta? (Ingresa el numero de la opcion): ";
+            int Guardarespuesta = ValidarNumeros();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            int OpcionCorrecta = stoi(respuestas[i]);
+
+            if (Guardarespuesta == OpcionCorrecta) {
+                resultados.RespCorrectasPlayerOne++;
+                cout << "Correcto" << endl;
+            } else {
+                resultados.RespIncorrectasPlayerOne++;
+                cout << "Incorrecto" << endl;
+            }
+
+            if (ConfOpcion == 2 && resultados.RespIncorrectasPlayerOne >= 3) {
+                playerOneActive = false;
+                cout << "Jugador 1 ha alcanzado el limite de respuestas incorrectas y no participara en la siguiente ronda." << endl;
+            }
+        }
+
+        // Player Two
+        if (playerTwoActive) {
+            cout << "Pregunta numero " << i + 1 << " para el Jugador 2:" << endl;
+            cout << preguntas[i] << endl;
+
+            cout << "¿Cual es tu respuesta? (Ingresa el numero de la opcion): ";
+            int Guardarespuesta = ValidarNumeros();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            int OpcionCorrecta = stoi(respuestas[i]);
+
+            if (Guardarespuesta == OpcionCorrecta) {
+                resultados.RespCorrectasPlayerTwo++;
+                cout << "Correcto" << endl;
+            } else {
+                resultados.RespIncorrectasPlayerTwo++;
+                cout << "Incorrecto" << endl;
+            }
+
+            if (ConfOpcion == 2 && resultados.RespIncorrectasPlayerTwo >= 3) {
+                playerTwoActive = false;
+                cout << "Jugador 2 ha alcanzado el limite de respuestas incorrectas y no participará en la siguiente ronda." << endl;
+            }
+        }
+
+        // Verificar si ambos jugadores han sido eliminados
+        if (!playerOneActive && !playerTwoActive) {
+            cout << "Ambos jugadores han alcanzado el limite de respuestas incorrectas. El juego ha terminado." << endl;
+            break;
+        }
+    }
+
+    return resultados; //Aqui le retorno los resultados obtenidos durante el juego a la estructura
 }
