@@ -61,7 +61,7 @@ string ValidarEntradasText()
         }
         else
         {
-            cout << "Entrada invalida. Por favor, ingrese solo letras." << endl;
+            cout << "Entrada invalida. Por favor, solo ingrese caracteres de tipo alfabeticos" << endl;
         }
     }
 }
@@ -78,13 +78,13 @@ int ValidarNumeroCantJugadores()
         {
             cin.clear(); // Limpia el error
 
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignora la entrada inválida
-            cout << "Entrada invalida. Por favor, ingrese un numero entero positivo." << endl;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignora la entrada invalida
+            cout << "Entrada invalida. Por favor, ingrese la cantidad de jugadores correcta con un limite de 5 jugadores y que no sean decimales" << endl;
         }
         else
         {
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            return numero; // Retorna el número válido
+            return numero; // Retorna el numero valido
         }
     }
 }
@@ -94,13 +94,14 @@ int validarNumeroTemas(int min, int max)
     int numero;
     while (true)
     {
+        cout << "- ";
         cin >> numero;
         if (cin.fail() || numero < min || numero > max)
         {
-            cin.clear(); // Clear the error flag
+            cin.clear(); 
 
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Entrada invalida. Por favor, ingrese un numero entre " << min << " y " << max << ": ";
+            cout << "Entrada invalida. Por favor, ingrese una opcion que este entre el rango de: " << min << " y de " << max << ": ";
         }
         else
         {
@@ -154,7 +155,7 @@ int cantidadJugadores(int Cant)
         cout << endl
              << mensajeOne << endl;
 
-        Cant = ValidarNumeroCantJugadores(); // Llama a la función de validación para obtener un número válido
+        Cant = ValidarNumeroCantJugadores(); // Llama a la funcion de validacion para obtener un numero valido
 
         // Confirmamos la cantidad
         cout << endl;
@@ -163,7 +164,7 @@ int cantidadJugadores(int Cant)
         cout << "- ";
 
         cin >> confirmacion;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpia el buffer
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
 
         if (confirmacion == 's' || confirmacion == 'S')
         {
