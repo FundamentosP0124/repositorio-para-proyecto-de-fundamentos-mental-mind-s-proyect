@@ -26,9 +26,10 @@ void temas();
 int ModalidadJuego(int);
 void LlamarArrePreguntas(string, string);
 int juegoIndividual();
-int ValidarNumeroCantJugadores();
+int ValidarNumeros();
 string ValidarEntradasText();
-int validarNumeroTemas(int, int);
+int validarNumeroRango(int, int);
+
 
 int main(void)
 {
@@ -66,7 +67,7 @@ string ValidarEntradasText()
     }
 }
 
-int ValidarNumeroCantJugadores()
+int ValidarNumeros()
 {
     int numero;
     while (true)
@@ -79,7 +80,7 @@ int ValidarNumeroCantJugadores()
             cin.clear(); // Limpia el error
 
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignora la entrada invalida
-            cout << "Entrada invalida. Por favor, ingrese la cantidad de jugadores correcta con un limite de 5 jugadores y que no sean decimales" << endl;
+            cout << "Entrada invalida. Por favor, ingrese numeros que no sean decimales o de cualquier otro tipo que no sean enteros positivos." << endl;
         }
         else
         {
@@ -89,7 +90,7 @@ int ValidarNumeroCantJugadores()
     }
 }
 
-int validarNumeroTemas(int min, int max)
+int validarNumeroRango(int min, int max)
 {
     int numero;
     while (true)
@@ -155,7 +156,7 @@ int cantidadJugadores(int Cant)
         cout << endl
              << mensajeOne << endl;
 
-        Cant = ValidarNumeroCantJugadores(); // Llama a la funcion de validacion para obtener un numero valido
+        Cant = ValidarNumeros(); // Llama a la funcion de validacion para obtener un numero valido
 
         // Confirmamos la cantidad
         cout << endl;
@@ -207,7 +208,7 @@ int SelecionTemas(int temaSeleccionado)
     while (true)
     {
         cout << "- ";
-        temaSeleccionado = validarNumeroTemas(1, 4); // Validamos que el tema esté entre 1 y 4
+        temaSeleccionado = validarNumeroRango(1, 4); // Validamos que el tema esté entre 1 y 4
         cout << mensajeThree << endl;
         cout << mensajeFour << " / " << mensajeFive << endl;
         cout << "- ";
@@ -229,8 +230,6 @@ int SelecionTemas(int temaSeleccionado)
                 cout << mensajeSix << endl;
                 cout << mensajeTwo << endl;
             }
-
-            temas();
         }
     }
 
@@ -272,7 +271,9 @@ int ModalidadJuego(int Opcion) // Selecciona de la modalidad del juego
     cout << " 1 - HASTA FINALIZAR" << endl;
     cout << " 2 - CON LIMITES DE DERROTAS (3) MAXIMO" << endl;
 
-    cin >> Opcion;
+    Opcion = validarNumeroRango(1,2);
+
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');     
 
     return Opcion;
 }
@@ -330,7 +331,8 @@ int juegoIndividual()
         cout << preguntas[i] << endl;
 
         cout << "¿Cual es tu respuesta? (Ingresa el numero de la opcion): ";
-        cin >> Guardarespuesta;
+        Guardarespuesta = ValidarNumeros();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
         opcionCorrecta = stoi(respuestas[i]); // Convertir las respuestas en caracteres enteros para poder compararlas con la respuesta ingresada
 
@@ -365,6 +367,6 @@ int juegoIndividual()
     return RespCorrectas; // Devolver la cantidad de respuestas correctas que obtuvo
 }
 
-int multijugador() // Es el area en que la jugabilidad de las preguntas sera entre 2 o mas participantes
+int multijugador() // Es el area en que la jugabilidad de las preguntas sera entre 2 o mas participantes con un limite de 5 jugadores
 {
 }
