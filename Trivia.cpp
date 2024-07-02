@@ -80,7 +80,7 @@ int ValidarNumeros()
             cin.clear(); // Limpia el error
 
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignora la entrada invalida
-            cout << "Entrada invalida. Por favor, ingrese numeros que no sean decimales o de cualquier otro tipo que no sean enteros positivos." << endl;
+            cout << "Entrada invalida. Por favor, ingrese numeros que no sean decimales o de cualquier otro tipo. Deben ser enteros positivos." << endl;
         }
         else
         {
@@ -145,16 +145,16 @@ int cantidadJugadores(int Cant)
     char confirmacion;
 
     // Almacenar mensajes para evitar repetirlos
-    string mensajeOne = "Ingrese la cantidad de jugadores que desean inscribirse.";
-    string mensajeTwo = "¿Esta seguro de que la cantidad de jugadores que desea inscribir sea: ";
+    string mensajeTwo = "¿Esta seguro de: 2 - '2' jugadores.";
     string mensajeThree = "Presione 's' para confirmar, 'n' para cambiar la cantidad de jugadores.";
+
 
     // Realizamos la confirmación
     while (true)
     {
         // Leemos la entrada
-        cout << endl
-             << mensajeOne << endl;
+        cout << "1 - Solo '1' jugador." << endl;
+        cout << "2 - De '2' jugadores." << endl;
 
         Cant = ValidarNumeros(); // Llama a la funcion de validacion para obtener un numero valido
 
@@ -183,7 +183,7 @@ int SelecionTemas(int temaSeleccionado)
 
     // Almacenar mensajes para evitar repetirlos
     string mensajeOne = "Seleccione el tema con el que desea jugar.";
-    string mensajeTwo = "Importante: El tema seleccionado aplicara para todas las preguntas a todos los jugadores.";
+    string mensajeTwo = "Importante: El tema seleccionado aplicara para todas las preguntas a los 2 jugadores.";
     string mensajeThree = "¿Esta seguro de que desea seleccionar este tema?";
     string mensajeFour = "Presione 's' para confirmar";
     string mensajeFive = "Presione 'n' para cambiar la seleccion del tema";
@@ -214,11 +214,11 @@ int SelecionTemas(int temaSeleccionado)
         cout << "- ";
         cin >> confirmacion;
 
-        if (confirmacion == 's')
+        if (confirmacion == 's' || confirmacion == 'S')
         {
             break; // Salir del bucle si la confirmación es 's'
         }
-        else if (confirmacion == 'n')
+        else if (confirmacion == 'n' || confirmacion == 'N')
         {
             if (Cantiad == 1)
             {
@@ -323,8 +323,6 @@ int juegoIndividual()
     cin.ignore();
     cin.get(); // Esperar a que el usuario presione enter
 
-    cout << "NIVEL FACIL" << endl;
-
     for (int i = 0; i < Num_Preguntas; i++)
     {
         cout << "Pregunta numero: " << i + 1 << endl;
@@ -364,7 +362,7 @@ int juegoIndividual()
     cout << "Respuestas correctas: " << RespCorrectas << endl;
     cout << "Respuestas incorrectas: " << RespIncorrectas << endl;
 
-    return RespCorrectas; // Devolver la cantidad de respuestas correctas que obtuvo
+    return RespCorrectas, RespIncorrectas; // Devolver la cantidad de respuestas correctas que obtuvo
 }
 
 int multijugador() // Es el area en que la jugabilidad de las preguntas sera entre 2 o mas participantes con un limite de 5 jugadores
