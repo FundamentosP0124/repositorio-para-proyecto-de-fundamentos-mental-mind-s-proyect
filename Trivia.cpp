@@ -8,6 +8,13 @@ using namespace std;
 
 const int Num_Preguntas = 5;
 
+// Necesitamos agregar vectores para, poder almacenar datos en diversas ocaciones sin perder los ya existentes
+
+// B O R R A D O R
+
+vector<string> nombres; // Conservar los nombres de los jugadores en caso de que repitan el ciclo del juego y agreguen nuevos jugadores
+vector<int> puntuaciones; // Conservar las puntuaciones con el mismo fin
+
 void menu();
 int cantidadJugadores(int);
 int RandorizarPosicionArreglo(int);
