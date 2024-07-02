@@ -17,7 +17,6 @@ int ModalidadJuego(int);
 void LlamarArrePreguntas(string, string);
 int juegoIndividual();
 
-
 int main(void)
 {
     int respuestasCorrectas = juegoIndividual();
@@ -180,8 +179,10 @@ void temas()
     }
 }
 
-int ModalidadJuego(int Opcion) // Selecciona de la modalidad del juego
+int ModalidadJuego() // Selecciona de la modalidad del juego
 {
+
+    int Opcion = 0;
 
     string mensajeOne = "Seleccione con que modalidad desean jugar.";
     string mensajeTwoo = "Seleccione con que modalidad desea jugar.";
@@ -208,30 +209,36 @@ int ModalidadJuego(int Opcion) // Selecciona de la modalidad del juego
     return Opcion;
 }
 
-void LlamarArrePreguntas(string (&enviarPreguntas)[Num_Preguntas], string (&enviarRespuestas)[Num_Preguntas]) {
+void LlamarArrePreguntas(string (&enviarPreguntas)[Num_Preguntas], string (&enviarRespuestas)[Num_Preguntas])
+{
     string arrePreguntas[Num_Preguntas] = {
         "¿Cual es la capital de Francia?\n1. Berlin\n2. Madrid\n3. Paris",
         "¿Cual es el rio mas largo del mundo?\n1. Nilo\n2. Amazonas\n3. Yangtse",
         "¿Quien escribio Cien años de soledad?\n1. Gabriel Garcia Marquez\n2. Mario Vargas Llosa\n3. Julio Cortazar",
         "¿En que año llego el hombre a la Luna?\n1. 1965\n2. 1969\n3. 1971",
-        "¿Cual es el planeta mas cercano al sol?\n1. Venus\n2. Tierra\n3. Mercurio"
-    };
+        "¿Cual es el planeta mas cercano al sol?\n1. Venus\n2. Tierra\n3. Mercurio"};
 
     string arreRespuestas[Num_Preguntas] = {
         "3",
         "2",
         "1",
         "2",
-        "3"
-    };
+        "3"};
 
-    for (int i = 0; i < Num_Preguntas; i++) {
+    for (int i = 0; i < Num_Preguntas; i++)
+    {
         enviarPreguntas[i] = arrePreguntas[i];
         enviarRespuestas[i] = arreRespuestas[i];
     }
 }
 
-int juegoIndividual() {
+int juegoIndividual()
+{ // Funcion con limites de desaciertos y se necesita modificar para la configuracion seleccionada
+
+    int ConfOpcion = 0;
+
+    ModalidadJuego(ConfOpcion);
+
     int RespIncorrectas = 0, RespCorrectas = 0;
     string preguntas[Num_Preguntas];
     string respuestas[Num_Preguntas];
@@ -249,7 +256,8 @@ int juegoIndividual() {
 
     cout << "NIVEL FACIL" << endl;
 
-    for (int i = 0; i < Num_Preguntas; i++) {
+    for (int i = 0; i < Num_Preguntas; i++)
+    {
         cout << "Pregunta numero: " << i + 1 << endl;
         cout << preguntas[i] << endl;
 
@@ -259,17 +267,26 @@ int juegoIndividual() {
         opcionCorrecta = stoi(respuestas[i]); // Convertir las respuestas en caracteres enteros para poder compararlas con la respuesta ingresada
 
         // Verificar que la respuesta ingresada sea correcta
-        if (Guardarespuesta == opcionCorrecta) {
+        if (Guardarespuesta == opcionCorrecta)
+        {
             RespCorrectas++;
             cout << "Correcto" << endl;
-        } else {
+        }
+        else
+        {
             RespIncorrectas++;
             cout << "Incorrecto" << endl;
         }
 
-        // Verificar si el usuario ha alcanzado el limite de respuestas incorrectas
-        if (RespIncorrectas == 3) {
-            break;
+        // Si la opcion seleccionada en el menu de configuracion es igual a 2 realizara la siguiente opcion si no, seguira con el proceso normal
+
+        if (ConfOpcion == 2)
+        {
+            // Verificar si el usuario ha alcanzado el limite de respuestas incorrectas
+            if (RespIncorrectas == 3)
+            {
+                break;
+            }
         }
     }
 
@@ -280,7 +297,6 @@ int juegoIndividual() {
     return RespCorrectas; // Devolver la cantidad de respuestas correctas que obtuvo
 }
 
-
-int multijugador() // Es el are en que la jugabilidad de las preguntas sera entre 2 o mas participantes
+int multijugador() // Es el area en que la jugabilidad de las preguntas sera entre 2 o mas participantes
 {
 }
