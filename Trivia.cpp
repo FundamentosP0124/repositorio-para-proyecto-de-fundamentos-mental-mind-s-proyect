@@ -275,7 +275,7 @@ int ModalidadJuego(int Opcion) // Selecciona de la modalidad del juego
     return Opcion;
 }
 
-void LlamarArrePreguntas(string (&enviarPreguntas)[Num_Preguntas], string (&enviarRespuestas)[Num_Preguntas])
+void LlamarArrePreguntas(string (&enviarPreguntas)[Num_Preguntas], string (&enviarRespuestas)[Num_Preguntas]) //Esta funcion resivira las preguntas y respuestas de los arreglos para despues ser compartidos a las funcionalidades de jugabilidad
 {
     string arrePreguntas[Num_Preguntas] = {
         "¿Cual es la capital de Francia?\n1. Berlin\n2. Madrid\n3. Paris",
