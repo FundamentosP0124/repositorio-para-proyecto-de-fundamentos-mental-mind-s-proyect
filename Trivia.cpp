@@ -31,6 +31,7 @@ int validarNumeroRango(int, int);
 struct ResultadosIndividual;
 struct ResultadosMultijugador;
 
+
 int main(void)
 {
     menu();
