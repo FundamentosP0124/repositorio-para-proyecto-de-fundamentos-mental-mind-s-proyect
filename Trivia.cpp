@@ -28,6 +28,8 @@ void LlamarArrePreguntas(string, string);
 int ValidarNumeros();
 string ValidarEntradasText();
 int validarNumeroRango(int, int);
+struct ResultadosIndividual;
+struct ResultadosMultijugador;
 
 int main(void)
 {
@@ -275,7 +277,7 @@ int ModalidadJuego(int Opcion) // Selecciona de la modalidad del juego
     return Opcion;
 }
 
-void LlamarArrePreguntas(string (&enviarPreguntas)[Num_Preguntas], string (&enviarRespuestas)[Num_Preguntas]) //Esta funcion resivira las preguntas y respuestas de los arreglos para despues ser compartidos a las funcionalidades de jugabilidad
+void LlamarArrePreguntas(string (&enviarPreguntas)[Num_Preguntas], string (&enviarRespuestas)[Num_Preguntas]) // Esta funcion resivira las preguntas y respuestas de los arreglos para despues ser compartidos a las funcionalidades de jugabilidad
 {
     string arrePreguntas[Num_Preguntas] = {
         "¿Cual es la capital de Francia?\n1. Berlin\n2. Madrid\n3. Paris",
@@ -368,7 +370,8 @@ ResultadosIndividual juegoIndividual()
     return resultados; // Devolver la cantidad de respuestas correctas e incorrectas que obtuvo
 }
 
-struct ResultadosMultijugador { //Para poder utilizar los valores en otras funciones para anunciar al ganador necesitamos recuperar los datos en una estructura
+struct ResultadosMultijugador
+{ // Para poder utilizar los valores en otras funciones para anunciar al ganador necesitamos recuperar los datos en una estructura
     int RespCorrectasPlayerOne;
     int RespIncorrectasPlayerOne;
     int RespCorrectasPlayerTwo;
@@ -391,7 +394,8 @@ ResultadosMultijugador multijugador() // Retornamos una instancia a la estructur
     for (int i = 0; i < Num_Preguntas; i++) // Definimos la cantidad de veces que se repetirá según la cantidad de preguntas
     {
         // Player One
-        if (playerOneActive) {
+        if (playerOneActive)
+        {
             cout << "Pregunta numero " << i + 1 << " para el Jugador 1:" << endl;
             cout << preguntas[i] << endl;
 
@@ -401,22 +405,27 @@ ResultadosMultijugador multijugador() // Retornamos una instancia a la estructur
 
             int OpcionCorrecta = stoi(respuestas[i]);
 
-            if (Guardarespuesta == OpcionCorrecta) {
+            if (Guardarespuesta == OpcionCorrecta)
+            {
                 resultados.RespCorrectasPlayerOne++;
                 cout << "Correcto" << endl;
-            } else {
+            }
+            else
+            {
                 resultados.RespIncorrectasPlayerOne++;
                 cout << "Incorrecto" << endl;
             }
 
-            if (ConfOpcion == 2 && resultados.RespIncorrectasPlayerOne >= 3) {
+            if (ConfOpcion == 2 && resultados.RespIncorrectasPlayerOne >= 3)
+            {
                 playerOneActive = false;
                 cout << "Jugador 1 ha alcanzado el limite de respuestas incorrectas y no participara en la siguiente ronda." << endl;
             }
         }
 
         // Player Two
-        if (playerTwoActive) {
+        if (playerTwoActive)
+        {
             cout << "Pregunta numero " << i + 1 << " para el Jugador 2:" << endl;
             cout << preguntas[i] << endl;
 
@@ -426,26 +435,31 @@ ResultadosMultijugador multijugador() // Retornamos una instancia a la estructur
 
             int OpcionCorrecta = stoi(respuestas[i]);
 
-            if (Guardarespuesta == OpcionCorrecta) {
+            if (Guardarespuesta == OpcionCorrecta)
+            {
                 resultados.RespCorrectasPlayerTwo++;
                 cout << "Correcto" << endl;
-            } else {
+            }
+            else
+            {
                 resultados.RespIncorrectasPlayerTwo++;
                 cout << "Incorrecto" << endl;
             }
 
-            if (ConfOpcion == 2 && resultados.RespIncorrectasPlayerTwo >= 3) {
+            if (ConfOpcion == 2 && resultados.RespIncorrectasPlayerTwo >= 3)
+            {
                 playerTwoActive = false;
                 cout << "Jugador 2 ha alcanzado el limite de respuestas incorrectas y no participará en la siguiente ronda." << endl;
             }
         }
 
         // Verificar si ambos jugadores han sido eliminados
-        if (!playerOneActive && !playerTwoActive) {
+        if (!playerOneActive && !playerTwoActive)
+        {
             cout << "Ambos jugadores han alcanzado el limite de respuestas incorrectas. El juego ha terminado." << endl;
             break;
         }
     }
 
-    return resultados; //Aqui le retorno los resultados obtenidos durante el juego a la estructura
+    return resultados; // Aqui le retorno los resultados obtenidos durante el juego a la estructura
 }
