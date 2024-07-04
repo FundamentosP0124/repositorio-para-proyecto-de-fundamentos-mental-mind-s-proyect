@@ -8,7 +8,7 @@
 
 using namespace std;
 
-const int Num_Preguntas = 5;
+const int Num_Preguntas = 15;
 
 // Necesitamos agregar vectores para, poder almacenar datos en diversas ocaciones sin perder los ya existentes
 
@@ -24,13 +24,12 @@ int cantidadJugadores(int);
 int SelecionTemas(int);
 void temas();
 int ModalidadJuego(int);
-void LlamarArrePreguntas(string, string);
+void LlamarArrePreguntasFutbol(string, string);
 int ValidarNumeros();
 string ValidarEntradasText();
 int validarNumeroRango(int, int);
 struct ResultadosIndividual;
 struct ResultadosMultijugador;
-
 
 int main(void)
 {
@@ -278,21 +277,41 @@ int ModalidadJuego(int Opcion) // Selecciona de la modalidad del juego
     return Opcion;
 }
 
-void LlamarArrePreguntas(string (&enviarPreguntas)[Num_Preguntas], string (&enviarRespuestas)[Num_Preguntas]) // Esta funcion resivira las preguntas y respuestas de los arreglos para despues ser compartidos a las funcionalidades de jugabilidad
+void LlamarArrePreguntasFutbol(string (&enviarPreguntas)[Num_Preguntas], string (&enviarRespuestas)[Num_Preguntas])
 {
     string arrePreguntas[Num_Preguntas] = {
-        "¿Cual es la capital de Francia?\n1. Berlin\n2. Madrid\n3. Paris",
-        "¿Cual es el rio mas largo del mundo?\n1. Nilo\n2. Amazonas\n3. Yangtse",
-        "¿Quien escribio Cien años de soledad?\n1. Gabriel Garcia Marquez\n2. Mario Vargas Llosa\n3. Julio Cortazar",
-        "¿En que año llego el hombre a la Luna?\n1. 1965\n2. 1969\n3. 1971",
-        "¿Cual es el planeta mas cercano al sol?\n1. Venus\n2. Tierra\n3. Mercurio"};
+        "¿En que pais se jugo la primera copa del mundo de la fifa?\n1) Argentina\n2) Uruguay\n3) Inglaterra",                                                  // 1
+        "A la fecha, ¿Quién es el máximo goleador de todos los tiempos en la historia de la copa del mundo?\n1) Misrolav\n2) Ronaldo Nazarino\n3) Gerd Muller", // 2
+        "Pele gano 3 copas del mundo\n1) Verdadero\n2) Falso",                                                                                                  // 3
+        "¿En qué país se inventó el futbol moderno?\n1) Brasil\n2) España\n3) Inglaterra",                                                                      // 4
+        "Cristiano Ronaldo hizo su debut oficial en el real Madrid con el numero 19. \n1) Verdadero\n2) Falso",                                                 // 5
+        "¿En qué año se fundó la FIFA? \n1) 1910\n2) 1904\n3) 1901",                                                                                            // 6
+        "Brasil es la única selección que ha participado en todas las ediciones de la copa del mundo. \n1) Verdadero\n2) Falso",                                // 7
+        "¿Quién ganó el premio al mejor jugador de la FIFA en 2020? \n1) Lionel Messi\n3) Robert Lewandoski\n3) Luca Modric",                                   // 8
+        "Canada es uno de los países que desarrollara la copa del mundo 2026. \n1) Verdadero\n2) Falso",                                                        // 9
+        "¿Cuál es el club de futbol que ha ganado más veces la UEFA champions league?\n1) Barcelona\n2) Bayern de munich\n3) Real Madrid cf",                   // 10
+        "Italia gano la copa del mundo del 2006\n1) Verdadero\n2) Falso",                                                                                       // 11
+        "¿En que año se jugo la primera copa del mundo de la fifa?\n1) 1930\n2) 1926\n3) 1934",                                                                 // 12
+        "La primera edición de la UEFA champions league se realizo en 1959\n1) Verdadero\n2) Falso",                                                            // 13
+        "¿Quién es el máximo ganador del balón de oro de la historia?\n1) Lionel Messi\n2) Cristiano Ronaldo\n3) Vinicius Junior",                              // 14
+        "La FIFA se fundo en Francia. \n1) Verdadero\n2) Falso"};                                                                                               // 15
 
     string arreRespuestas[Num_Preguntas] = {
-        "3",
-        "2",
-        "1",
-        "2",
-        "3"};
+        "2",  // 1
+        "1",  // 2
+        "1",  // 3
+        "3",  // 4
+        "2",  // 5
+        "2",  // 6
+        "1",  // 7
+        "2",  // 8
+        "1",  // 9
+        "3",  // 10
+        "1",  // 11
+        "1",  // 12
+        "2",  // 13
+        "1",  // 14
+        "1"}; // 15
 
     for (int i = 0; i < Num_Preguntas; i++)
     {
@@ -300,6 +319,7 @@ void LlamarArrePreguntas(string (&enviarPreguntas)[Num_Preguntas], string (&envi
         enviarRespuestas[i] = arreRespuestas[i];
     }
 }
+
 
 struct ResultadosIndividual
 {
@@ -320,7 +340,7 @@ ResultadosIndividual juegoIndividual()
     string respuestas[Num_Preguntas];
 
     // Llamar a la funcion para obtener preguntas y respuestas
-    LlamarArrePreguntas(preguntas, respuestas);
+    LlamarArrePreguntasFutbol(preguntas, respuestas);
 
     int opcionCorrecta;
     int Guardarespuesta;
@@ -387,7 +407,7 @@ ResultadosMultijugador multijugador() // Retornamos una instancia a la estructur
     string respuestas[Num_Preguntas];
 
     ModalidadJuego(ConfOpcion);
-    LlamarArrePreguntas(preguntas, respuestas);
+    LlamarArrePreguntasFutbol(preguntas, respuestas);
 
     bool playerOneActive = true;
     bool playerTwoActive = true;
@@ -464,3 +484,5 @@ ResultadosMultijugador multijugador() // Retornamos una instancia a la estructur
 
     return resultados; // Aqui le retorno los resultados obtenidos durante el juego a la estructura
 }
+
+// Agregaremos las funcionalidades para extraer los puntos y al final calcularlos
