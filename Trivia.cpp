@@ -32,6 +32,7 @@ struct ResultadosIndividual;
 struct ResultadosMultijugador;
 void LlamarArrePreguntasMitologia(string, string);
 void LlamarArrePreguntasGeografia(string, string);
+void LlamarArrePreguntasCultGeneral(string, string);
 
 int main(void)
 {
@@ -412,7 +413,50 @@ void LlamarArrePreguntasGeografia(string (&enviarPreguntas)[Num_Preguntas], stri
     }
 }
 
+void LlamarArrePreguntasCultGeneral(string (&enviarPreguntas)[Num_Preguntas], string (&enviarRespuestas)[Num_Preguntas])
+{
+    string arrePreguntas[Num_Preguntas] = {
+        "¿Cuál es el nombre del tratado que puso fin a la Primera Guerra Mundial?\n1) Tratado de Versalles\n2) Tratado de París\n3) Tratado de Tordesillas\n4) Tratado de Ginebra",                            // 1
+        "¿Cuál es el país con la mayor cantidad de volcanes activos?\n1) Japón\n2) Indonesia\n3) Islandia\n4) Italia",                                                                                         // 2
+        "¿Qué artista es conocido por cortar su propia oreja?\n1) Pablo Picasso\n2) Salvador Dalí\n3) Vincent van Gogh\n4) Claude Monet",                                                                      // 3
+        "¿Cuál es el órgano más grande del cuerpo humano?\n1) Corazón\n2) Hígado\n3) Piel\n4) Pulmones",                                                                                                       // 4
+        "¿Cuál es la ciudad más antigua continuamente habitada del mundo?\n1) Jerusalén\n2) Atenas\n3) Damasco\n4) Roma",                                                                                      // 5
+        "¿Cuál es el nombre del proceso por el cual las plantas convierten la luz solar en energía?\n1) Respiración\n2) Fermentación\n3) Fotosíntesis\n4) Metabolismo",                                        // 6
+        "¿Cuál es el libro sagrado del Islam?\n1) La Biblia\n2) El Talmud\n3) El Corán\n4) Los Vedas",                                                                                                         // 7
+        "¿Cuál es el país más joven del mundo, habiéndose independizado en 2011?\n1) Timor Oriental\n2) Montenegro\n3) Kosovo\n4) Sudán del Sur",                                                              // 8
+        "¿Qué movimiento artístico surgió a principios del siglo XX y es conocido por sus formas geométricas y su enfoque en la abstracción?\n1) Impresionismo\n2) Expresionismo\n3) Cubismo\n4) Surrealismo", // 9
+        "¿Cuál es el idioma más hablado en el mundo?\n1) Inglés\n2) Español\n3) Chino mandarín\n4) Árabe",                                                                                                     // 10
+        "¿En qué año llegó el hombre a la Luna por primera vez?\n1) 1965\n2) 1969\n3) 1972\n4) 1959",                                                                                                          // 11
+        "¿Cuál es la moneda oficial de Japón?\n1) Yuan\n2) Won\n3) Yen\n4) Dólar",                                                                                                                             // 12
+        "¿En qué país se encuentra la ciudad de Petra?\n1) Jordania\n2) Egipto\n3) Turquía\n4) Grecia",                                                                                                        // 13
+        "¿Cuál es el elemento químico más abundante en el universo?\n1) Helio\n2) Oxígeno\n3) Hidrógeno\n4) Carbono",                                                                                          // 14
+        "¿Quién pintó 'La última cena'?\n1) Pablo Picasso\n2) Leonardo da Vinci\n3) Vincent van Gogh\n4) Claude Monet"                                                                                         // 15
+    };
 
+    string arreRespuestas[Num_Preguntas] = {
+        "1", // 1
+        "2", // 2
+        "3", // 3
+        "3", // 4
+        "3", // 5
+        "3", // 6
+        "3", // 7
+        "4", // 8
+        "3", // 9
+        "3", // 10
+        "2", // 11
+        "3", // 12
+        "1", // 13
+        "3", // 14
+        "2"  // 15
+    };
+
+    for (int i = 0; i < Num_Preguntas; i++)
+    {
+        enviarPreguntas[i] = arrePreguntas[i];
+        enviarRespuestas[i] = arreRespuestas[i];
+    }
+}
 
 struct ResultadosIndividual
 {
