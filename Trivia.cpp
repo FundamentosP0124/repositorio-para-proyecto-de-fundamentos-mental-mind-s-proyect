@@ -30,6 +30,7 @@ string ValidarEntradasText();
 int validarNumeroRango(int, int);
 struct ResultadosIndividual;
 struct ResultadosMultijugador;
+void LlamarArrePreguntasMitologia(string, string);
 
 int main(void)
 {
@@ -312,6 +313,51 @@ void LlamarArrePreguntasFutbol(string (&enviarPreguntas)[Num_Preguntas], string 
         "2",  // 13
         "1",  // 14
         "1"}; // 15
+
+    for (int i = 0; i < Num_Preguntas; i++)
+    {
+        enviarPreguntas[i] = arrePreguntas[i];
+        enviarRespuestas[i] = arreRespuestas[i];
+    }
+}
+
+void LlamarArrePreguntasMitologia(string (&enviarPreguntas)[Num_Preguntas], string (&enviarRespuestas)[Num_Preguntas])
+{
+
+    string arrePreguntas[Num_Preguntas] = {
+        "¿Quién es el dios del trueno en la mitología nórdica?\n1) Loki\n2) Thor\n3) Odin\n4) Balder",                                                              // 1
+        "¿Cómo se llama el caballo de ocho patas de Odin en la mitología nórdica?\n1) Fenrir\n2) Jormungandr\n3) Garm\n4) Sleipnir",                                // 2
+        "¿Qué héroe griego completó los Doce Trabajos?\n1) Perseo\n2) Teseo\n3) Hércules\n4) Aquiles",                                                              // 3
+        "¿Cuál es el nombre del lobo gigante que está destinado a matar a Odin durante el Ragnarök?\n1) Fenrir\n2) Garm\n3) Skoll\n4) Hati",                        // 4
+        "¿Cuál de las siguientes diosas griegas es la diosa de la sabiduría?\n1) Hera\n2) Atenea\n3) Afrodita\n4) Deméter",                                         // 5
+        "¿Cuál es el nombre del puente que conecta Asgard con el mundo de los humanos en la mitología nórdica?\n1) Yggdrasil\n2) Bifröst\n3) Valhalla\n4) Mjolnir", // 6
+        "¿Quién es el dios de la luz y la belleza, asesinado por una flecha de muérdago en la mitología nórdica?\n1) Tyr\n2) Frey\n3) Balder\n4) Vidar",            // 7
+        "¿Cuál es el nombre del titán griego que sostiene el cielo sobre sus hombros?\n1) Cronos\n2) Atlas\n3) Prometeo\n4) Oceanus",                               // 8
+        "¿Quién es la diosa del amor y la belleza en la mitología griega?\n1) Hera\n2) Atenea\n3) Afrodita\n4) Artemisa",                                           // 9
+        "¿Quién es el dios del fuego y la forja en la mitología griega?\n1) Hefesto\n2) Tyr\n3) Heimdall\n4) Freyr",                                                // 10
+        "¿Cómo se llama el martillo de Thor en la mitología nórdica?\n1) Gungnir\n2) Mjolnir\n3) Brisingamen\n4) Gram",                                             // 11
+        "¿Quién es el mensajero de los dioses en la mitología griega?\n1) Ares\n2) Hermes\n3) Apolo\n4) Dionisio",                                                  // 12
+        "¿Quién es el dios del sol en la mitología griega?\n1) Hades\n2) Apolo\n3) Dionisio\n4) Poseidón",                                                          // 13
+        "¿Qué animal persigue continuamente al sol y la luna en la mitología nórdica?\n1) Lobos\n2) Cuervos\n3) Serpientes\n4) Dragones",                           // 14
+        "¿Cómo se llama el gigante que guarda la entrada al reino de los muertos en la mitología nórdica?\n1) Ymir\n2) Hel\n3) Garm\n4) Surtr"};                    // 15
+
+    string arreRespuestas[Num_Preguntas] = {
+        "2", // 1
+        "4", // 2
+        "3", // 3
+        "1", // 4
+        "2", // 5
+        "2", // 6
+        "3", // 7
+        "2", // 8
+        "3", // 9
+        "1", // 10
+        "2", // 11
+        "2", // 12
+        "2", // 13
+        "1", // 14
+        "3"  // 15
+    };
 
     for (int i = 0; i < Num_Preguntas; i++)
     {
