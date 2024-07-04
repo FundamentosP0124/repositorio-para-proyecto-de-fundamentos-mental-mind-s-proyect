@@ -31,6 +31,7 @@ int validarNumeroRango(int, int);
 struct ResultadosIndividual;
 struct ResultadosMultijugador;
 void LlamarArrePreguntasMitologia(string, string);
+void LlamarArrePreguntasGeografia(string, string);
 
 int main(void)
 {
@@ -365,6 +366,52 @@ void LlamarArrePreguntasMitologia(string (&enviarPreguntas)[Num_Preguntas], stri
         enviarRespuestas[i] = arreRespuestas[i];
     }
 }
+
+void LlamarArrePreguntasGeografia(string (&enviarPreguntas)[Num_Preguntas], string (&enviarRespuestas)[Num_Preguntas])
+{
+    string arrePreguntas[Num_Preguntas] = {
+        "¿Cuál es el país más grande del mundo en términos de superficie?\n1) Canadá\n2) China\n3) Rusia\n4) Estados Unidos",                        // 1
+        "¿Cuál es el río más largo del mundo?\n1) Nilo\n2) Amazonas\n3) Yangtsé\n4) Misisipi",                                                       // 2
+        "¿En qué continente se encuentra el desierto del Sahara?\n1) Asia\n2) África\n3) América del Sur\n4) Oceanía",                               // 3
+        "¿Cuál es la capital de Japón?\n1) Beijing\n2) Seúl\n3) Tokyo\n4) Bangkok",                                                                  // 4
+        "¿Cuál es el país más pequeño del mundo en términos de superficie?\n1) Mónaco\n2) San Marino\n3) Liechtenstein\n4) Ciudad del Vaticano",     // 5
+        "¿Cuál es el país más grande de América del Sur por superficie?\n1) Argentina\n2) Brasil\n3) Perú\n4) Colombia",                             // 6
+        "¿Cuál es la capital de Canadá?\n1) Toronto\n2) Vancouver\n3) Ottawa\n4) Montreal",                                                          // 7
+        "¿Cuál es el país más poblado del mundo?\n1) India\n2) Estados Unidos\n3) Indonesia\n4) China",                                              // 8
+        "¿Qué país está completamente rodeado por Sudáfrica?\n1) Suazilandia\n2) Lesoto\n3) Botsuana\n4) Namibia",                                   // 9
+        "¿Cuál es la capital de Australia?\n1) Sídney\n2) Melbourne\n3) Canberra\n4) Brisbane",                                                      // 10
+        "¿Qué país tiene la mayor cantidad de islas?\n1) Indonesia\n2) Filipinas\n3) Noruega\n4) Suecia",                                            // 11
+        "¿Cuál es el lago más profundo del mundo?\n1) Lago Baikal\n2) Lago Tanganica\n3) Lago Superior\n4) Lago Victoria",                           // 12
+        "¿En qué país se encuentra el Monte Kilimanjaro?\n1) Kenia\n2) Tanzania\n3) Uganda\n4) Etiopía",                                             // 13
+        "¿Cuál es el desierto más grande del mundo?\n1) Desierto del Gobi\n2) Desierto de Arabia\n3) Desierto del Kalahari\n4) Desierto del Sahara", // 14
+        "¿Cuál es la cordillera más larga del mundo?\n1) Montañas Rocosas\n2) Andes\n3) Alpes\n4) Himalayas"                                         // 15
+    };
+
+    string arreRespuestas[Num_Preguntas] = {
+        "3", // 1
+        "2", // 2
+        "2", // 3
+        "3", // 4
+        "4", // 5
+        "2", // 6
+        "3", // 7
+        "4", // 8
+        "2", // 9
+        "3", // 10
+        "4", // 11
+        "1", // 12
+        "2", // 13
+        "4", // 14
+        "2"  // 15
+    };
+
+    for (int i = 0; i < Num_Preguntas; i++)
+    {
+        enviarPreguntas[i] = arrePreguntas[i];
+        enviarRespuestas[i] = arreRespuestas[i];
+    }
+}
+
 
 
 struct ResultadosIndividual
