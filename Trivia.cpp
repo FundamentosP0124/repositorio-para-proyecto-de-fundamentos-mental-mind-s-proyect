@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <string>
-#include <vector>
+#include <vector> //Se necesita para poder almacenar los datos de los jugadores y asi tambeien poder enviarle los datos a los vectores utilizando el push_back
 #include <cctype>
 #include <limits>
 
@@ -14,8 +14,10 @@ const int Num_Preguntas = 15;
 
 // B O R R A D O R
 
-vector<string> nombres;   // Conservar los nombres de los jugadores en caso de que repitan el ciclo del juego y agreguen nuevos jugadores
-vector<int> puntuaciones; // Conservar las puntuaciones con el mismo fin
+const int MAX_JUGADORES = 100; // Tamaño máximo del arreglo de jugadores
+string nombresGlobales[MAX_JUGADORES];
+int cantidadActualJugadores = 0;
+
 
 // DECLARACIONES
 
@@ -33,6 +35,7 @@ struct ResultadosMultijugador;
 void LlamarArrePreguntasMitologia(string, string);
 void LlamarArrePreguntasGeografia(string, string);
 void LlamarArrePreguntasCultGeneral(string, string);
+string registrarJugadores();
 
 int main(void)
 {
@@ -190,52 +193,22 @@ int cantidadJugadores(int Cant)
     return Cant;
 }
 
-string registrarJugadores()
-{
-    string nombre;
-    string nombres[2] = {};
+void registrarJugadores(string guardarNombres[], int& cantidadActual) {
     int cantidad = 0;
-
     cantidadJugadores(cantidad);
 
-    for (int i = 0; i < cantidad; i++)
-    {
-        if (cantidad == 1)
-        {
-            cout << "Registra tu alias de jugador" << endl;
-            cout << "No ingrese ningun caracter especial ni numero. Todo debe ser de caracter alfabético." << endl;
-            nombre = ValidarEntradasText();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            nombres[0] = nombre;
+    cout << "Para registrar tu alias, puedes ocupar letras, números y símbolos" << endl << endl;
+
+    for (int i = 0; i < cantidad; i++) {
+        cout << "Registra tu alias";
+        if (cantidad > 1) {
+            cout << " (" << i + 1 << ")";
         }
-        else
-        {
-            cout << "Registren sus alias de jugador" << (i + 1) << endl;
-            cout << "No ingrese ningun caracter especial ni numero. Todo debe ser de caracter alfabético." << endl;
-            nombre = ValidarEntradasText();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            nombres[i] = nombre;
-        }
+        cout << ": ";
+        cin >> guardarNombres[cantidadActual + i];
     }
 
-    cout << "Jugadores registrados:" << endl;
-    for (int i = 0; i < cantidad; i++)
-    {
-        cout << "Jugador " << (i + 1) << ": " << nombres[i] << endl;
-    }
-
-    // Devolvemos el nombre de el jugador o de los jugadores
-    string resultado;
-    for (int i = 0; i < cantidad; i++)
-    {
-        if (i != 0)
-        {
-            resultado += ", ";
-        }
-        resultado += nombres[i];
-    }
-
-    return resultado;
+    cantidadActual += cantidad; // Actualizar la cantidad actual de jugadores
 }
 
 int SelecionTemas(int temaSeleccionado)
@@ -544,18 +517,22 @@ ResultadosIndividual juegoIndividual()
     case 1:
         LlamarArrePreguntasCultGeneral(preguntas, respuestas);
         cout << "TEMA SELECCIONADO : CULTURA GENERAL" << endl;
+        cout << endl;
         break;
     case 2:
         LlamarArrePreguntasFutbol(preguntas, respuestas);
         cout << "TEMA SELECCIONADO : FUTBOL" << endl;
+        cout << endl;
         break;
     case 3:
         LlamarArrePreguntasGeografia(preguntas, respuestas);
         cout << "TEMA SELECCIONADO : GEOGRAFIA" << endl;
+        cout << endl;
         break;
     case 4:
         LlamarArrePreguntasMitologia(preguntas, respuestas);
         cout << "TEMA SELECCIONADO : MITOLOGIA" << endl;
+        cout << endl;
         break;
     }
 
@@ -724,5 +701,14 @@ ResultadosMultijugador multijugador() // Retornamos una instancia a la estructur
 
     return resultados; // Aqui le retorno los resultados obtenidos durante el juego a la estructura
 }
+
+void mostrarJugadores(const string jugadores[], int cantidad) {
+    cout << "Jugadores registrados:" << endl;
+    for (int i = 0; i < cantidad; i++) {
+        cout << "- " << jugadores[i] << endl;
+    }
+}
+
+
 
 // Agregaremos las funcionalidades para extraer los puntos y al final calcularlos
