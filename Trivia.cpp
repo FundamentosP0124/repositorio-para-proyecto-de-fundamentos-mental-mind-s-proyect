@@ -558,12 +558,35 @@ struct ResultadosMultijugador
 ResultadosMultijugador multijugador() // Retornamos una instancia a la estructura resultados de ambos jugadores
 {
     ResultadosMultijugador resultados = {0, 0, 0, 0};
-    int ConfOpcion = 0;
+
+    int ConfOpcion = 0, temaSELECCIONADO = 0;
+
     string preguntas[Num_Preguntas];
     string respuestas[Num_Preguntas];
 
+    // Importaciones para configurar las modalidades del juego
     ModalidadJuego(ConfOpcion);
-    LlamarArrePreguntasFutbol(preguntas, respuestas);
+    SelecionTemas(temaSELECCIONADO);
+
+    // Importar las funciones que contienen las preguntas y respuestas
+    switch (temaSELECCIONADO)
+    {
+    case 1:
+        LlamarArrePreguntasCultGeneral(preguntas, respuestas);
+        break;
+    case 2:
+        LlamarArrePreguntasFutbol(preguntas, respuestas);
+        break;
+    case 3:
+        LlamarArrePreguntasGeografia(preguntas, respuestas);
+        break;
+    case 4:
+        LlamarArrePreguntasMitologia(preguntas, respuestas);
+        break;
+
+    default:
+        break;
+    }
 
     bool playerOneActive = true;
     bool playerTwoActive = true;
