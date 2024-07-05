@@ -469,15 +469,34 @@ ResultadosIndividual juegoIndividual()
 
     ResultadosIndividual resultados = {0, 0};
 
-    int ConfOpcion = 0;
+    int ConfOpcion = 0, temaSELECCIONADO = 0;
 
+    // Importaciones para configurar las modalidades del juego
     ModalidadJuego(ConfOpcion);
+    SelecionTemas(temaSELECCIONADO);
 
     string preguntas[Num_Preguntas];
     string respuestas[Num_Preguntas];
 
-    // Llamar a la funcion para obtener preguntas y respuestas
-    LlamarArrePreguntasFutbol(preguntas, respuestas);
+    // Importar las funciones que contienen las preguntas y respuestas
+    switch (temaSELECCIONADO)
+    {
+    case 1:
+        LlamarArrePreguntasCultGeneral(preguntas, respuestas);
+        break;
+    case 2:
+        LlamarArrePreguntasFutbol(preguntas, respuestas);
+        break;
+    case 3:
+        LlamarArrePreguntasGeografia(preguntas, respuestas);
+        break;
+    case 4:
+        LlamarArrePreguntasMitologia(preguntas, respuestas);
+        break;
+
+    default:
+        break;
+    }
 
     int opcionCorrecta;
     int Guardarespuesta;
