@@ -16,8 +16,9 @@ const int Num_Preguntas = 15;
 
 const int MAX_JUGADORES = 100; // Tamaño máximo del arreglo de jugadores
 string nombresGlobales[MAX_JUGADORES];
+ResultadosIndividual resultadosGlobalesIndividual[MAX_JUGADORES];
+ResultadosMultijugador resultadosGlobalesMultijugador;
 int cantidadActualJugadores = 0;
-
 
 // DECLARACIONES
 
@@ -193,15 +194,19 @@ int cantidadJugadores(int Cant)
     return Cant;
 }
 
-void registrarJugadores(string guardarNombres[], int& cantidadActual) {
+void registrarJugadores(string guardarNombres[], int &cantidadActual)
+{
     int cantidad = 0;
     cantidadJugadores(cantidad);
 
-    cout << "Para registrar tu alias, puedes ocupar letras, números y símbolos" << endl << endl;
+    cout << "Para registrar tu alias, puedes ocupar letras, números y símbolos" << endl
+         << endl;
 
-    for (int i = 0; i < cantidad; i++) {
+    for (int i = 0; i < cantidad; i++)
+    {
         cout << "Registra tu alias";
-        if (cantidad > 1) {
+        if (cantidad > 1)
+        {
             cout << " (" << i + 1 << ")";
         }
         cout << ": ";
@@ -702,13 +707,35 @@ ResultadosMultijugador multijugador() // Retornamos una instancia a la estructur
     return resultados; // Aqui le retorno los resultados obtenidos durante el juego a la estructura
 }
 
-void mostrarJugadores(const string jugadores[], int cantidad) {
-    cout << "Jugadores registrados:" << endl;
-    for (int i = 0; i < cantidad; i++) {
-        cout << "- " << jugadores[i] << endl;
+void mostrarResultadosIndividuales(const string nombres[], const ResultadosIndividual resultados[], int cantidad)
+{
+    cout << "Resultados del juego individual:" << endl;
+    for (int i = 0; i < cantidad; i++)
+    {
+        cout << "Jugador: " << nombres[i] << " - Correctas: " << resultados[i].RespCorrectas << " - Incorrectas: " << resultados[i].RespIncorrectas << endl;
     }
 }
 
+void mostrarResultadosMultijugador(const string nombres[], const ResultadosMultijugador &resultados)
+{
+    cout << "Resultados del juego multijugador:" << endl;
+    cout << "Jugador 1: " << nombres[0] << " - Correctas: " << resultados.RespCorrectasPlayerOne << " - Incorrectas: " << resultados.RespIncorrectasPlayerOne << endl;
+    cout << "Jugador 2: " << nombres[1] << " - Correctas: " << resultados.RespCorrectasPlayerTwo << " - Incorrectas: " << resultados.RespIncorrectasPlayerTwo << endl;
+}
 
+void mostrarTodo()
+{
+    if (cantidadActualJugadores == 1) {
+        resultadosGlobalesIndividual[0] = juegoIndividual();
+    } else {
+        resultadosGlobalesMultijugador = multijugador();
+    }
+
+    if (cantidadActualJugadores == 1) {
+        mostrarResultadosIndividuales(nombresGlobales, resultadosGlobalesIndividual, cantidadActualJugadores);
+    } else {
+        mostrarResultadosMultijugador(nombresGlobales, resultadosGlobalesMultijugador);
+    }
+}
 
 // Agregaremos las funcionalidades para extraer los puntos y al final calcularlos
