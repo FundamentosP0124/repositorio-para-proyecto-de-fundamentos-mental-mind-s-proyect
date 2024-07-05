@@ -145,10 +145,11 @@ void menu() // Agregar la funcion de validar la opcion ingresada
 
 int cantidadJugadores(int Cant)
 {
-    char confirmacion;
+    string confirmacion;
 
     // Almacenar mensajes para evitar repetirlos
-    string mensajeTwo = "¿Esta seguro de: 2 - '2' jugadores.";
+    string mensajeOne = "¿Esta seguro de: 1 - '1' jugador";
+    string mensajeTwo = "¿Esta seguro de: 2 - '2' jugadores";
     string mensajeThree = "Presione 's' para confirmar, 'n' para cambiar la cantidad de jugadores.";
 
     // Realizamos la confirmación
@@ -158,24 +159,56 @@ int cantidadJugadores(int Cant)
         cout << "1 - Solo '1' jugador." << endl;
         cout << "2 - De '2' jugadores." << endl;
 
-        Cant = ValidarNumeros(); // Llama a la funcion de validacion para obtener un numero valido
+        Cant = ValidarNumeros();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Llama a la funcion de validacion para obtener un numero valido
 
         // Confirmamos la cantidad
-        cout << endl;
-        cout << mensajeTwo << Cant << "?" << endl;
-        cout << mensajeThree << endl;
-        cout << "- ";
+        if (Cant == 2)
+        {
+            cout << endl;
+            cout << mensajeTwo << Cant << "?" << endl;
+            cout << mensajeThree << endl;
+            cout << "- ";
+        }
+        else
+        {
+            cout << endl;
+            cout << mensajeOne << Cant << "?" << endl;
+            cout << mensajeThree << endl;
+            cout << "- ";
+        }
 
-        cin >> confirmacion;
+        confirmacion = ValidarEntradasText();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-        if (confirmacion == 's' || confirmacion == 'S')
+        if (confirmacion == "s" || confirmacion == "S")
         {
             break; // Salir del bucle si la confirmacion es 's' o 'S'
         }
     }
 
     return Cant;
+}
+
+string registrarJugadores()
+{
+
+    string nombres;
+
+    int cantidad = 0;
+
+    cantidadJugadores(cantidad);
+
+    for (int i = 0; i < cantidad; i++)
+    {
+        if (cantidad == 1)
+        {
+            cout << "Registra tu alias de jugador" << endl;
+            cout << "No ingrese ningun caracter especial ni numero. Todo debe ser de caracter alfabtico." << endl;
+            nombres = ValidarEntradasText();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    }
 }
 
 int SelecionTemas(int temaSeleccionado)
@@ -483,18 +516,19 @@ ResultadosIndividual juegoIndividual()
     {
     case 1:
         LlamarArrePreguntasCultGeneral(preguntas, respuestas);
+        cout << "TEMA SELECCIONADO : CULTURA GENERAL" << endl;
         break;
     case 2:
         LlamarArrePreguntasFutbol(preguntas, respuestas);
+        cout << "TEMA SELECCIONADO : FUTBOL" << endl;
         break;
     case 3:
         LlamarArrePreguntasGeografia(preguntas, respuestas);
+        cout << "TEMA SELECCIONADO : GEOGRAFIA" << endl;
         break;
     case 4:
         LlamarArrePreguntasMitologia(preguntas, respuestas);
-        break;
-
-    default:
+        cout << "TEMA SELECCIONADO : MITOLOGIA" << endl;
         break;
     }
 
@@ -573,18 +607,19 @@ ResultadosMultijugador multijugador() // Retornamos una instancia a la estructur
     {
     case 1:
         LlamarArrePreguntasCultGeneral(preguntas, respuestas);
+        cout << "TEMA SELECCIONADO : CULTURA GENERAL" << endl;
         break;
     case 2:
         LlamarArrePreguntasFutbol(preguntas, respuestas);
+        cout << "TEMA SELECCIONADO : FUTBOL" << endl;
         break;
     case 3:
         LlamarArrePreguntasGeografia(preguntas, respuestas);
+        cout << "TEMA SELECCIONADO : GEOGRAFIA" << endl;
         break;
     case 4:
         LlamarArrePreguntasMitologia(preguntas, respuestas);
-        break;
-
-    default:
+        cout << "TEMA SELECCIONADO : MITOLOGIA" << endl;
         break;
     }
 
@@ -645,7 +680,6 @@ ResultadosMultijugador multijugador() // Retornamos una instancia a la estructur
                 resultados.RespIncorrectasPlayerTwo++;
                 cout << "Incorrecto" << endl;
             }
-
             if (ConfOpcion == 2 && resultados.RespIncorrectasPlayerTwo >= 3)
             {
                 playerTwoActive = false;
