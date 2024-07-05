@@ -192,9 +192,8 @@ int cantidadJugadores(int Cant)
 
 string registrarJugadores()
 {
-
-    string nombres;
-
+    string nombre;
+    string nombres[2] = {};
     int cantidad = 0;
 
     cantidadJugadores(cantidad);
@@ -204,11 +203,39 @@ string registrarJugadores()
         if (cantidad == 1)
         {
             cout << "Registra tu alias de jugador" << endl;
-            cout << "No ingrese ningun caracter especial ni numero. Todo debe ser de caracter alfabtico." << endl;
-            nombres = ValidarEntradasText();
+            cout << "No ingrese ningun caracter especial ni numero. Todo debe ser de caracter alfabético." << endl;
+            nombre = ValidarEntradasText();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            nombres[0] = nombre;
+        }
+        else
+        {
+            cout << "Registren sus alias de jugador" << (i + 1) << endl;
+            cout << "No ingrese ningun caracter especial ni numero. Todo debe ser de caracter alfabético." << endl;
+            nombre = ValidarEntradasText();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            nombres[i] = nombre;
         }
     }
+
+    cout << "Jugadores registrados:" << endl;
+    for (int i = 0; i < cantidad; i++)
+    {
+        cout << "Jugador " << (i + 1) << ": " << nombres[i] << endl;
+    }
+
+    // Devolvemos el nombre de el jugador o de los jugadores
+    string resultado;
+    for (int i = 0; i < cantidad; i++)
+    {
+        if (i != 0)
+        {
+            resultado += ", ";
+        }
+        resultado += nombres[i];
+    }
+
+    return resultado;
 }
 
 int SelecionTemas(int temaSeleccionado)
