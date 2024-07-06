@@ -169,3 +169,32 @@ void TemasEvaluados() {
         Menu();
     }
 }
+
+bool Salir() {
+    system("clear||cls");
+    int opcionS;
+
+    cout << "Estas seguro de terminar el juego?" << endl << endl;
+    cout << "Presiona 1 para salir o 0 para continuar: ";
+    
+    do {
+        cin >> opcionS;  // Leer la opción del usuario
+
+        switch(opcionS) {
+            case 1:
+                cout << endl;
+                cout << "Usted ha seleccionado la opcion Salir. See you next time Triviano!!!" << endl << endl;
+                return true; // Termina el programa 
+                break;
+            case 0:
+                cout << "Continuando el juego..." << endl;
+                return false;
+                break;
+            default:
+                cout << "Opcion inexistente. Intente nuevamente: ";
+                break;
+        }
+    } while (opcionS != 1);  // Salir del bucle cuando la opción sea válida
+
+    return false;
+}
