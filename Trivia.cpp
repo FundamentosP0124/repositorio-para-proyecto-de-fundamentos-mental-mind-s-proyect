@@ -719,23 +719,25 @@ void mostrarResultadosIndividuales(const string nombres[], const ResultadosIndiv
 void mostrarResultadosMultijugador(const string nombres[], const ResultadosMultijugador &resultados)
 {
     cout << "Resultados del juego multijugador:" << endl;
-    cout << "Jugador 1: " << nombres[0] << " - Correctas: " << resultados.RespCorrectasPlayerOne << " - Incorrectas: " << resultados.RespIncorrectasPlayerOne << endl;
+    cout << "Jugador 1: " << nombres[0] << " - Correctas: " << resultados.RespCorrectasPlayerOne << " - Incorrectas: " << resultados.RespIncorrectasPlayerOne << endl; // Acceder a los datos de la instancia
     cout << "Jugador 2: " << nombres[1] << " - Correctas: " << resultados.RespCorrectasPlayerTwo << " - Incorrectas: " << resultados.RespIncorrectasPlayerTwo << endl;
 }
 
 void mostrarTodo()
 {
-    if (cantidadActualJugadores == 1) {
-        resultadosGlobalesIndividual[0] = juegoIndividual();
-    } else {
-        resultadosGlobalesMultijugador = multijugador();
-    }
-
-    if (cantidadActualJugadores == 1) {
-        mostrarResultadosIndividuales(nombresGlobales, resultadosGlobalesIndividual, cantidadActualJugadores);
-    } else {
-        mostrarResultadosMultijugador(nombresGlobales, resultadosGlobalesMultijugador);
-    }
+    mostrarResultadosIndividuales(nombresGlobales, resultadosGlobalesIndividual, cantidadActualJugadores);
+    mostrarResultadosMultijugador(nombresGlobales, resultadosGlobalesMultijugador);
 }
 
-// Agregaremos las funcionalidades para extraer los puntos y al final calcularlos
+/*Modificar esto para obtener los datos de cada jugador y luego almacenarlo en una variable global que quizas ya este
+entonces despues de almacenarlas vamos a mostrar todos los datos, nombres y puntuaciones obtenidas por cada uno porque si verificamos que ya existe algun jugador que este registrado
+entonces vamos a solo actualizar su registro sin necesidad de repetir. Despues vamos a mostrar que si alguno de los jugadores que se va registrar ya esta registrado darle la opcion de volver a jugar sin necesidad de volverse a registrar
+independientemente si solo es un jugador o dos jugadores
+
+Primero mandamos todos los datos a las variables globales despues imprimimos los datos de las variables globales */
+
+void EnviarDatosGlobales()
+{
+    resultadosGlobalesIndividual[0] = juegoIndividual();
+    resultadosGlobalesMultijugador[0] = multijugador();
+}
