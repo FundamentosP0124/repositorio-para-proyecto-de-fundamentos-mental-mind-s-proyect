@@ -16,8 +16,8 @@ const int Num_Preguntas = 15;
 
 const int MAX_JUGADORES = 100; // Tamaño máximo del arreglo de jugadores
 string nombresGlobales[MAX_JUGADORES];
-ResultadosIndividual resultadosGlobalesIndividual[MAX_JUGADORES];
-ResultadosMultijugador resultadosGlobalesMultijugador;
+const int resultadosGlobalesIndividual[MAX_JUGADORES];
+const int resultadosGlobalesMultijugador;
 int cantidadActualJugadores = 0;
 
 // DECLARACIONES
@@ -31,12 +31,10 @@ void LlamarArrePreguntasFutbol(string, string);
 int ValidarNumeros();
 string ValidarEntradasText();
 int validarNumeroRango(int, int);
-struct ResultadosIndividual;
-struct ResultadosMultijugador;
 void LlamarArrePreguntasMitologia(string, string);
 void LlamarArrePreguntasGeografia(string, string);
 void LlamarArrePreguntasCultGeneral(string, string);
-string registrarJugadores();
+void registrarJugadores(string [], int &);
 
 int main(void)
 {
@@ -496,18 +494,13 @@ void LlamarArrePreguntasCultGeneral(string (&enviarPreguntas)[Num_Preguntas], st
     }
 }
 
-struct ResultadosIndividual
-{
-    int RespIncorrectas;
-    int RespCorrectas;
-};
 
-ResultadosIndividual juegoIndividual()
+int juegoIndividual()
 { // Funcion con limites de desaciertos y se necesita modificar para la configuracion seleccionada
 
-    ResultadosIndividual resultados = {0, 0};
-
     int ConfOpcion = 0, temaSELECCIONADO = 0;
+
+    int RespCorrectas = 0, RespIncorrectas = 0;
 
     // Importaciones para configurar las modalidades del juego
     ModalidadJuego(ConfOpcion);
@@ -563,12 +556,12 @@ ResultadosIndividual juegoIndividual()
         // Verificar que la respuesta ingresada sea correcta
         if (Guardarespuesta == opcionCorrecta)
         {
-            resultados.RespCorrectas++;
+            RespCorrectas++;
             cout << "Correcto" << endl;
         }
         else
         {
-            resultados.RespIncorrectas++;
+            RespIncorrectas++;
             cout << "Incorrecto" << endl;
         }
 
@@ -577,7 +570,7 @@ ResultadosIndividual juegoIndividual()
         if (ConfOpcion == 2)
         {
             // Verificar si el usuario ha alcanzado el limite de respuestas incorrectas
-            if (resultados.RespIncorrectas == 3)
+            if (RespIncorrectas == 3)
             {
                 break;
             }
@@ -587,20 +580,12 @@ ResultadosIndividual juegoIndividual()
     cout << "Juego terminado." << endl;
     cout << "Resultados" << endl;
 
-    return resultados; // Devolver la cantidad de respuestas correctas e incorrectas que obtuvo
+    return RespCorrectas; // Devolver la cantidad de respuestas correctas e incorrectas que obtuvo
 }
 
-struct ResultadosMultijugador
-{ // Para poder utilizar los valores en otras funciones para anunciar al ganador necesitamos recuperar los datos en una estructura
-    int RespCorrectasPlayerOne;
-    int RespIncorrectasPlayerOne;
-    int RespCorrectasPlayerTwo;
-    int RespIncorrectasPlayerTwo;
-};
-
-ResultadosMultijugador multijugador() // Retornamos una instancia a la estructura resultados de ambos jugadores
+int multijugador(int RespCorrectasPlayerOne, int RespCorrectasPlayerTwo) // Retornamos una instancia a la estructura resultados de ambos jugadores
 {
-    ResultadosMultijugador resultados = {0, 0, 0, 0};
+    int RespIncorrectasPlayerOne = 0, RespIncorrectasPlayerTwo = 0;
 
     int ConfOpcion = 0, temaSELECCIONADO = 0;
 
@@ -651,16 +636,16 @@ ResultadosMultijugador multijugador() // Retornamos una instancia a la estructur
 
             if (Guardarespuesta == OpcionCorrecta)
             {
-                resultados.RespCorrectasPlayerOne++;
+                RespCorrectasPlayerOne++;
                 cout << "Correcto" << endl;
             }
             else
             {
-                resultados.RespIncorrectasPlayerOne++;
+                RespIncorrectasPlayerOne++;
                 cout << "Incorrecto" << endl;
             }
 
-            if (ConfOpcion == 2 && resultados.RespIncorrectasPlayerOne >= 3)
+            if (ConfOpcion == 2 && RespIncorrectasPlayerOne >= 3)
             {
                 playerOneActive = false;
                 cout << "Jugador 1 ha alcanzado el limite de respuestas incorrectas y no participara en la siguiente ronda." << endl;
@@ -681,15 +666,15 @@ ResultadosMultijugador multijugador() // Retornamos una instancia a la estructur
 
             if (Guardarespuesta == OpcionCorrecta)
             {
-                resultados.RespCorrectasPlayerTwo++;
+                RespCorrectasPlayerTwo++;
                 cout << "Correcto" << endl;
             }
             else
             {
-                resultados.RespIncorrectasPlayerTwo++;
+                RespIncorrectasPlayerTwo++;
                 cout << "Incorrecto" << endl;
             }
-            if (ConfOpcion == 2 && resultados.RespIncorrectasPlayerTwo >= 3)
+            if (ConfOpcion == 2 && RespIncorrectasPlayerTwo >= 3)
             {
                 playerTwoActive = false;
                 cout << "Jugador 2 ha alcanzado el limite de respuestas incorrectas y no participará en la siguiente ronda." << endl;
@@ -703,31 +688,9 @@ ResultadosMultijugador multijugador() // Retornamos una instancia a la estructur
             break;
         }
     }
-
-    return resultados; // Aqui le retorno los resultados obtenidos durante el juego a la estructura
 }
 
-void mostrarResultadosIndividuales(const string nombres[], const ResultadosIndividual resultados[], int cantidad)
-{
-    cout << "Resultados del juego individual:" << endl;
-    for (int i = 0; i < cantidad; i++)
-    {
-        cout << "Jugador: " << nombres[i] << " - Correctas: " << resultados[i].RespCorrectas << " - Incorrectas: " << resultados[i].RespIncorrectas << endl;
-    }
-}
 
-void mostrarResultadosMultijugador(const string nombres[], const ResultadosMultijugador &resultados)
-{
-    cout << "Resultados del juego multijugador:" << endl;
-    cout << "Jugador 1: " << nombres[0] << " - Correctas: " << resultados.RespCorrectasPlayerOne << " - Incorrectas: " << resultados.RespIncorrectasPlayerOne << endl; // Acceder a los datos de la instancia
-    cout << "Jugador 2: " << nombres[1] << " - Correctas: " << resultados.RespCorrectasPlayerTwo << " - Incorrectas: " << resultados.RespIncorrectasPlayerTwo << endl;
-}
-
-void mostrarTodo()
-{
-    mostrarResultadosIndividuales(nombresGlobales, resultadosGlobalesIndividual, cantidadActualJugadores);
-    mostrarResultadosMultijugador(nombresGlobales, resultadosGlobalesMultijugador);
-}
 
 /*Modificar esto para obtener los datos de cada jugador y luego almacenarlo en una variable global que quizas ya este
 entonces despues de almacenarlas vamos a mostrar todos los datos, nombres y puntuaciones obtenidas por cada uno porque si verificamos que ya existe algun jugador que este registrado
@@ -736,8 +699,3 @@ independientemente si solo es un jugador o dos jugadores
 
 Primero mandamos todos los datos a las variables globales despues imprimimos los datos de las variables globales */
 
-void EnviarDatosGlobales()
-{
-    resultadosGlobalesIndividual[0] = juegoIndividual();
-    resultadosGlobalesMultijugador[0] = multijugador();
-}
