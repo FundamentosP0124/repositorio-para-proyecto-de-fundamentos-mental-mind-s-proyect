@@ -247,3 +247,24 @@ int EvaluarSolitario()
         return 0; // No hay ganador
     }
 }
+
+int EvaluarMultijugador()
+{
+
+    int respuestasCorrectasPlayer1 = 0, respuestasCorrectasPlayer2 = 0;
+    
+    multijugador(respuestasCorrectasPlayer1, respuestasCorrectasPlayer2);
+
+    if (respuestasCorrectasPlayer1 > respuestasCorrectasPlayer2)
+    {
+        cout << "El ganador es el jugador 1 por la cantidad de " << respuestasCorrectasPlayer1 << " puntos." << endl;
+    }
+    else if (respuestasCorrectasPlayer1 < respuestasCorrectasPlayer2)
+    {
+        cout << "El ganador es el jugador 2 por la cantidad de " << respuestasCorrectasPlayer2 << " puntos" << endl;
+    }
+    else
+    {
+        cout << "Los dos jugadores tienen el mismo puntaje con la cantidad de " << respuestasCorrectasPlayer1 << " puntos." << endl;
+    }
+}
