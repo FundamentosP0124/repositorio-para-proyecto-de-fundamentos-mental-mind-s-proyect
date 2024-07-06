@@ -18,31 +18,58 @@ int main(void)
 void menu()
 {
 
+    void Menu() {
     int opcion;
 
-    cout << endl;
-    cout << "Presione enter para empezar";
-    cin.get(); // En espera del enter para seguir
+    do {
+        
 
-    cout << endl;
-    cout << "////MENU////" << endl;
-    /*Agregar el resto de opciones en el menu*/
+        cout << endl;
+        cout << "Presione enter para empezar";
+        cin.get(); // En espera del enter para seguir
 
-    cout << "0? - TERMINAR JUEGO";
+    
 
-    switch (opcion)
-    {
-    case 4:
-        exit(0);
-        break;
+        cout << endl;
+        cout << "============================" << endl;
+        cout << "  Bienvenidos a TriviaZone  " << endl;
+        cout << "============================" << endl;
+        cout << "       MENU PRINCIPAL       " << endl;
+        cout << "============================" << endl;
+        cout << "1. Jugar" << endl;
+        cout << "2. Ayuda" << endl;
+        cout << "3. Creditos/Desarrolladores" << endl;
+        cout << "4. Temas de las Preguntas" << endl;
+        cout << "5. Salir" << endl;
+        cout << "============================" << endl;
+        cout << endl;
 
-    default:
-        cout << "Opcion inexistente";
-        break;
-    }
+        cout << "Ingrese la opcion a realizar: ";
+        cin >> opcion;
+        cout << endl;
+
+        switch (opcion) {
+            case 1:
+                IniciarJuego();
+                break;
+            case 2:
+                MostrarAyuda();
+                break;
+            case 3:
+                RegistroDesarrolladores();
+                break;
+            case 4:
+                TemasEvaluados();
+                break;
+            case 5:
+                if (Salir()) {
+                    exit(0);
+                }
+                break;
+            default:
+                cout << "La opcion registrada no es valida. Por favor seleccione nuevamente." << endl;
+                break;
+            }
+        } while(true);
 }
-
-int cantidadJugadores(int Cant)
-{
-
 }
