@@ -216,3 +216,34 @@ void IniciarJuego() {
         Menu();
     }
 }
+
+int EvaluarSolitario()
+{
+
+    int respuestasCorrectas = 0;
+
+    juegoIndividual(respuestasCorrectas);
+
+    if (respuestasCorrectas > 10)
+    {
+        cout << endl;
+        cout << "Eres increible!!! Felicidades por obtener la insignia mas aclamada: Enciclopedia Viviente."; // Enciclopedia Viviente
+        cout << endl;
+    }
+    else if (respuestasCorrectas >= 5 && respuestasCorrectas <= 10)
+    {
+        cout << endl;
+        cout << "Bien hecho Triviano!!! Tus habilidades innatas y conocimiento de la cultura general te han permitido hacerte de la insignia: Sabio en Progreso."; // Sabio en Progreso
+        cout << endl;
+    }
+    else if (respuestasCorrectas >= 0 && respuestasCorrectas <= 4)
+    {
+        cout << endl;
+        cout << "Que mala fortuna Triviano... Al parecer no has estado fino con tu conocimiento sobre estas diferentes tematicas evaluadas, vuelve a intentarlo." << endl;
+        cout << "Buena Suerte!!! Tu insignia es: Rezagado del Saber."; // Rezagado del Saber
+    }
+    else
+    {
+        return 0; // No hay ganador
+    }
+}
