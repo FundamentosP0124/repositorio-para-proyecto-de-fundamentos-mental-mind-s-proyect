@@ -198,3 +198,21 @@ bool Salir() {
 
     return false;
 }
+
+void IniciarJuego() {
+    system("clear||cls");
+    cout << endl;
+    cout << "Usted ha seleccionado la opcion Jugar. Disfrute de TriviaZone!!!" << endl << endl;
+    // Aquí irá el funcionamiento del juego
+
+    char salir;
+
+    cout << "Presiona 's' o 'S' para regresar al menu principal..." << endl;
+    cin >> salir;
+    
+    if (salir == 's' || salir == 'S')
+    {
+        system("clear||cls");
+        Menu();
+    }
+}
