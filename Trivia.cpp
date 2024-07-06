@@ -75,3 +75,44 @@ void Menu() {
             }
         } while(true);
 }
+
+void MostrarAyuda() {
+    system("clear||cls");
+    cout << endl;
+    cout << "Usted ha seleccionado la opcion Ayuda. Permitanos explicarte el funcionamiento del juego." << endl << endl; 
+    cout << endl;
+    cout << "Bienvenidos a TriviaZone!!! En este juego podras dar a relucir tus conocimientos sobre cualquier tema; en esta ocasion te presentaremos una cierta" << endl;
+    cout << "cantidad de temas seleccionados por nosotros para que los disfrutes resolviendo intentando obtener la mayor cantidad de respuestas acertadas. " << endl << endl;
+    
+    cout << "A continuacion, te explicaremos brevemente de como funciona este juego de Preguntas y Respuestas. Esperamos que te guste :D ." << endl << endl;
+    
+    cout << "En TriviaZone hay dos modos para jugar, por lo tanto, cuando selecciones jugar el sistema te preguntara que tipo de modo te gustaria jugar. Existen" << endl;
+    cout << "dos modos: El primero es el Modo Solitario donde el usuario seleccionara el tema a jugar por su cuenta con el objetivo de contestar la mayor cantidad" << endl;
+    cout << "de preguntas presentadas durante el juego, el metodo de evaluacion sera que al final de la ronda de preguntas se llevara a cabo por medio de Insignias;" << endl;
+    cout << "estas insignias se tratan de Enciclopedia Viviente (Para los jugadores que han demostrado un dominio excepcional de preguntas de trivia), Sabio en Progreso" << endl;
+    cout << "(Para aquellos que estan comenzando a descubrir su potencial en trivia) y Rezagado del Saber (Para los jugadores que aun estan encontrando su camino en el mundo" << endl;
+    cout << "de la trivia). Para obtener Enciclopedia Viviente necesitas tener mas de 10 preguntas acertadas, mientras tanto con Sabio en Progreso lo unico que necesitas es" << endl;
+    cout << "tener 5 o mas preguntas acertadas, por ultimo, para obtener Rezagado del Saber necesitas haber obtenido solamente 4 preguntas acertadas. Esta explicacion es para" << endl;
+    cout << "quienes gusten jugar en el Modo Solitario" << endl << endl;
+    
+    cout << "Para el segundo modo de juego se trata del Modo Multijugador donde se selecciona en numero de participantes y el tema a evaluar antes de empezar la trivia" << endl;
+    cout << "de preguntas y respuestas. El metodo de evaluacion planteado conlleva de que los usuarios van contestando la ronda de preguntas por turnos segun el numero" << endl;
+    cout << "de participantes que van a jugar, cada pregunta valdra un punto y dentro de esas 15 preguntas va haber una que valdra 3 puntos (se le conocera como punto" << endl;
+    cout << "dorado); cuando todos los usuarios hayan terminado la ronda de preguntas, al final se mostrara una clasificacion de los mejores en el podio, el usuario" << endl;
+    cout << "ganador sera el que obtenga el mayor de puntos conseguidos en el preguntas y respuestas de TriviaZone." << endl << endl;
+    
+    cout << "Basicamente de esto trata el juego, esperamos que lo disfrutes.";
+    cout << endl;
+    cout << endl;
+
+    char salir;
+
+    cout << "Presiona 's' o 'S' para regresar al menu principal..." << endl;
+    cin >> salir;
+    
+    if (salir == 's' || salir == 'S')
+    {
+        system("clear||cls");
+        Menu();
+    }
+}
