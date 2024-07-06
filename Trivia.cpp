@@ -116,3 +116,29 @@ void MostrarAyuda() {
         Menu();
     }
 }
+
+void RegistroDesarrolladores() {
+    system("clear||cls");
+    cout << endl;
+    cout << "Usted ha seleccionado la opcion Creditos/Desarrolladores. Echemos un vistazo de los creadores de este juego!!!" << endl << endl;
+    cout << endl;
+    cout << "================================================" << endl;
+    cout << "                    CREDITOS         " << endl;
+    cout << "================================================" << endl;
+    cout << "  Casco Miranda, Hector Enrique      00141124" << endl;
+    cout << "  De la O Ortiz, Cesar Daniel        00205824" << endl;
+    cout << "  Aquino Figueroa, Rodrigo Javier    00024524" << endl;
+    cout << "================================================" << endl;
+    cout << endl;
+
+    char salir;
+
+    cout << "Presiona 's' o 'S' para regresar al menu principal..." << endl;
+    cin >> salir;
+    
+    if (salir == 's' || salir == 'S')
+    {
+        system("clear||cls");
+        Menu();
+    }
+}
