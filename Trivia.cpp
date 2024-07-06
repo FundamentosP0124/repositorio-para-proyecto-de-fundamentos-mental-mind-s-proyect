@@ -142,3 +142,30 @@ void RegistroDesarrolladores() {
         Menu();
     }
 }
+
+void TemasEvaluados() {
+    system("clear||cls");
+    cout << endl;
+    cout << "Usted ha seleccionado la opcion Temas de las Preguntas. Vamos a ver cuales son las tematicas evaluadas en esta Trivia." << endl << endl;
+    cout << endl;
+    cout << "Bienvenidos al apartado de Temas Evaluados en TriviaZone!!! En esta seccion solo te mostraremos los temas a evaluar en esta Trivia" << endl;
+    cout << "para que puedas tener la mente en claro sobre las preguntas definidas que te apareceran segun la seccion que tu elijas." << endl;
+    cout << "A continuacion, te presentamos los 4 temas evaluados en TriviaZone:" << endl << endl;
+    cout << "1- Futbol" << endl;
+    cout << "2- Mitologia" << endl;
+    cout << "3- Geografia/Paises" << endl;
+    cout << "4- Cultura General" << endl << endl << endl;
+    cout << "Al momento que selecciones jugar, tu elegiras el tema de preguntas que te gustaria desafiar. Buena Suerte Triviano!!!" << endl;
+    cout << endl;
+
+    char salir;
+
+    cout << "Presiona 's' o 'S' para regresar al menu principal..." << endl;
+    cin >> salir;
+    
+    if (salir == 's' || salir == 'S')
+    {
+        system("clear||cls");
+        Menu();
+    }
+}
