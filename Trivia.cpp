@@ -1,24 +1,27 @@
-#include <iostream>
-
+#include "iostream"
+#include "cstdlib" //Para usar exit()
 using namespace std;
 
 /*Juego de trivia de preguntas al azar con 3 niveles de dificultad y un maximo de 3 equivocaciones
 de acuerdo a la modalidad seleccionada del juego sin es por limites de inaciertos puntuacion final
 segun si es el modo multijugador o de manera individual*/
 
-void menu();
+void Menu();
+void IniciarJuego();
+void MostrarAyuda();
+void RegistroDesarrolladores();
+void TemasEvaluados();
+bool Salir();
 
 int main(void)
 {
-    menu();
+    Menu();
 
     return 0;
 }
 
-void menu()
-{
 
-    void Menu() {
+void Menu() {
     int opcion;
 
     do {
@@ -71,5 +74,4 @@ void menu()
                 break;
             }
         } while(true);
-}
 }
