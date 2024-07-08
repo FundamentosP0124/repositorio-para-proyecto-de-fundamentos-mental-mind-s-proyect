@@ -14,8 +14,8 @@ void RegistroDesarrolladores();
 void TemasEvaluados();
 void imprimirParrafo(const string& parrafo);
 bool Salir();
-void registrarDatos(const string &, int);
 void mostrarDatos();
+void registrarPuntuacion(int);
 
 // Contadores que validaran que el maximo de jugadores no sobrepase
 int cantidadActualJugadores = 0;
@@ -260,21 +260,18 @@ int EvaluarSolitario() {
         cout << "Que mala fortuna Triviano... Al parecer no has estado fino con tu conocimiento sobre estas diferentes tematicas evaluadas, vuelve a intentarlo." << endl;
         cout << "Buena Suerte!!! Tu insignia es: Rezagado del Saber."; // Rezagado del Saber
     }
-    else
-    {
-        return 0; // No hay ganador
-    }
 }
 
 int EvaluarMultijugador() {
 
+    int i;
     int respuestasCorrectasPlayer1 = 0, respuestasCorrectasPlayer2 = 0;
 
     multijugador(respuestasCorrectasPlayer1, respuestasCorrectasPlayer2);
 
     if (respuestasCorrectasPlayer1 > respuestasCorrectasPlayer2)
     {
-        cout << "El ganador es el jugador 1 por la cantidad de " << respuestasCorrectasPlayer1 << " puntos." << endl;
+        cout << "El ganador es el jugador " << guardarNombres[i] << " por la cantidad de " << respuestasCorrectasPlayer1 << " puntos." << endl;
     }
     else if (respuestasCorrectasPlayer1 < respuestasCorrectasPlayer2)
     {
@@ -293,9 +290,8 @@ void mostrarDatos(){
     } 
 }
 
-void registrarDatos(const string &nombre, int puntuacion) {
-    if (cantidadActualJugadores < maximoJugadores && cantidadActualPuntuaciones < maxiPuntuacion) {
-        guardarNombres[cantidadActualJugadores++] = nombre;
+void registrarPuntuacion(int puntuacion) {
+    if (cantidadActualJugadores < maxiPuntuacion) {
         guardarPuntuaciones[cantidadActualPuntuaciones++] = puntuacion;
     } else {
         cout << "No se pueden registrar mas jugadores o puntuaciones, se ha alcanzado el maximo." << endl;
