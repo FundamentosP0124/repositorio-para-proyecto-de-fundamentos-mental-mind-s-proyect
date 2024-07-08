@@ -1,5 +1,6 @@
 #include "iostream"
 #include "cstdlib" //Para usar exit()
+#include "string"
 using namespace std;
 
 /*Juego de trivia de preguntas al azar con 3 niveles de dificultad y un maximo de 3 equivocaciones
@@ -11,6 +12,7 @@ void IniciarJuego();
 void MostrarAyuda();
 void RegistroDesarrolladores();
 void TemasEvaluados();
+void imprimirParrafo(const string& parrafo);
 bool Salir();
 
 int main(void)
@@ -20,6 +22,9 @@ int main(void)
     return 0;
 }
 
+void imprimirParrafo(const string& parrafo) {
+    cout << parrafo << endl;
+}
 
 void Menu() {
     int opcion;
@@ -79,30 +84,32 @@ void Menu() {
 void MostrarAyuda() {
     system("clear||cls");
     cout << endl;
-    cout << "Usted ha seleccionado la opcion Ayuda. Permitanos explicarte el funcionamiento del juego." << endl << endl; 
-    cout << endl;
-    cout << "Bienvenidos a TriviaZone!!! En este juego podras dar a relucir tus conocimientos sobre cualquier tema; en esta ocasion te presentaremos una cierta" << endl;
-    cout << "cantidad de temas seleccionados por nosotros para que los disfrutes resolviendo intentando obtener la mayor cantidad de respuestas acertadas. " << endl << endl;
+    const string parrafo = 
+            "Usted ha seleccionado la opcion Ayuda. Permitanos explicarte el funcionamiento del juego.\n\n"
+            "Bienvenidos a TriviaZone!!! En este juego podras dar a relucir tus conocimientos sobre cualquier tema; en esta ocasion te presentaremos una cierta\n"
+            "cantidad de temas seleccionados por nosotros para que los disfrutes resolviendo intentando obtener la mayor cantidad de respuestas acertadas.\n\n"
     
-    cout << "A continuacion, te explicaremos brevemente de como funciona este juego de Preguntas y Respuestas. Esperamos que te guste :D ." << endl << endl;
+            "A continuacion, te explicaremos brevemente de como funciona este juego de Preguntas y Respuestas. Esperamos que te guste :D .\n\n"
     
-    cout << "En TriviaZone hay dos modos para jugar, por lo tanto, cuando selecciones jugar el sistema te preguntara que tipo de modo te gustaria jugar. Existen" << endl;
-    cout << "dos modos: El primero es el Modo Solitario donde el usuario seleccionara el tema a jugar por su cuenta con el objetivo de contestar la mayor cantidad" << endl;
-    cout << "de preguntas presentadas durante el juego, el metodo de evaluacion sera que al final de la ronda de preguntas se llevara a cabo por medio de Insignias;" << endl;
-    cout << "estas insignias se tratan de Enciclopedia Viviente (Para los jugadores que han demostrado un dominio excepcional de preguntas de trivia), Sabio en Progreso" << endl;
-    cout << "(Para aquellos que estan comenzando a descubrir su potencial en trivia) y Rezagado del Saber (Para los jugadores que aun estan encontrando su camino en el mundo" << endl;
-    cout << "de la trivia). Para obtener Enciclopedia Viviente necesitas tener mas de 10 preguntas acertadas, mientras tanto con Sabio en Progreso lo unico que necesitas es" << endl;
-    cout << "tener 5 o mas preguntas acertadas, por ultimo, para obtener Rezagado del Saber necesitas haber obtenido solamente 4 preguntas acertadas. Esta explicacion es para" << endl;
-    cout << "quienes gusten jugar en el Modo Solitario" << endl << endl;
+            "En TriviaZone hay dos modos para jugar, por lo tanto, cuando selecciones jugar el sistema te preguntara que tipo de modo te gustaria jugar. Existen\n"
+            "dos modos: El primero es el Modo Solitario donde el usuario seleccionara el tema a jugar por su cuenta con el objetivo de contestar la mayor cantidad\n"
+            "de preguntas presentadas durante el juego, el metodo de evaluacion sera que al final de la ronda de preguntas se llevara a cabo por medio de Insignias;\n"
+            "estas insignias se tratan de Enciclopedia Viviente (Para los jugadores que han demostrado un dominio excepcional de preguntas de trivia), Sabio en Progreso\n"
+            "(Para aquellos que estan comenzando a descubrir su potencial en trivia) y Rezagado del Saber (Para los jugadores que aun estan encontrando su camino en el mundo\n"
+            "de la trivia). Para obtener Enciclopedia Viviente necesitas tener mas de 10 preguntas acertadas, mientras tanto con Sabio en Progreso lo unico que necesitas es\n"
+            "tener 5 o mas preguntas acertadas, por ultimo, para obtener Rezagado del Saber necesitas haber obtenido solamente 4 preguntas acertadas. Esta explicacion es para\n"
+            "quienes gusten jugar en el Modo Solitario.\n\n"
+            
+            "Para el segundo modo de juego se trata del Modo Multijugador donde se selecciona en numero de participantes y el tema a evaluar antes de empezar la trivia\n"
+            "de preguntas y respuestas. El metodo de evaluacion planteado conlleva de que los usuarios van contestando cada pregunta simultaneamente antes de pasar a la\n"
+            "siguiente, donde cada pregunta vale un punto; cuando los usuarios inscritos hayan terminado la ronda de preguntas, al final se mostrara el ganador del preguntas\n"
+            "y respuestas de TriviaZone a traves de la comparacion entre las respuestas correctas de los dos jugadores, es decir, solo hay un ganador. Sin embargo, si al final\n"
+            "los dos jugadores poseen la misma cantidad de preguntas acertadas, la ronda se declarara como un empate sin ganador.\n\n"
     
-    cout << "Para el segundo modo de juego se trata del Modo Multijugador donde se selecciona en numero de participantes y el tema a evaluar antes de empezar la trivia" << endl;
-    cout << "de preguntas y respuestas. El metodo de evaluacion planteado conlleva de que los usuarios van contestando la ronda de preguntas por turnos segun el numero" << endl;
-    cout << "de participantes que van a jugar, cada pregunta valdra un punto y dentro de esas 15 preguntas va haber una que valdra 3 puntos (se le conocera como punto" << endl;
-    cout << "dorado); cuando todos los usuarios hayan terminado la ronda de preguntas, al final se mostrara una clasificacion de los mejores en el podio, el usuario" << endl;
-    cout << "ganador sera el que obtenga el mayor de puntos conseguidos en el preguntas y respuestas de TriviaZone." << endl << endl;
-    
-    cout << "Basicamente de esto trata el juego, esperamos que lo disfrutes.";
-    cout << endl;
+            "Basicamente de esto trata el juego, esperamos que lo disfrutes.";
+
+    // Llamamos a la función para imprimir el párrafo
+    imprimirParrafo(parrafo);
     cout << endl;
 
     char salir;
@@ -214,57 +221,5 @@ void IniciarJuego() {
     {
         system("clear||cls");
         Menu();
-    }
-}
-
-int EvaluarSolitario()
-{
-
-    int respuestasCorrectas = 0;
-
-    juegoIndividual(respuestasCorrectas);
-
-    if (respuestasCorrectas > 10)
-    {
-        cout << endl;
-        cout << "Eres increible!!! Felicidades por obtener la insignia mas aclamada: Enciclopedia Viviente."; // Enciclopedia Viviente
-        cout << endl;
-    }
-    else if (respuestasCorrectas >= 5 && respuestasCorrectas <= 10)
-    {
-        cout << endl;
-        cout << "Bien hecho Triviano!!! Tus habilidades innatas y conocimiento de la cultura general te han permitido hacerte de la insignia: Sabio en Progreso."; // Sabio en Progreso
-        cout << endl;
-    }
-    else if (respuestasCorrectas >= 0 && respuestasCorrectas <= 4)
-    {
-        cout << endl;
-        cout << "Que mala fortuna Triviano... Al parecer no has estado fino con tu conocimiento sobre estas diferentes tematicas evaluadas, vuelve a intentarlo." << endl;
-        cout << "Buena Suerte!!! Tu insignia es: Rezagado del Saber."; // Rezagado del Saber
-    }
-    else
-    {
-        return 0; // No hay ganador
-    }
-}
-
-int EvaluarMultijugador()
-{
-
-    int respuestasCorrectasPlayer1 = 0, respuestasCorrectasPlayer2 = 0;
-    
-    multijugador(respuestasCorrectasPlayer1, respuestasCorrectasPlayer2);
-
-    if (respuestasCorrectasPlayer1 > respuestasCorrectasPlayer2)
-    {
-        cout << "El ganador es el jugador 1 por la cantidad de " << respuestasCorrectasPlayer1 << " puntos." << endl;
-    }
-    else if (respuestasCorrectasPlayer1 < respuestasCorrectasPlayer2)
-    {
-        cout << "El ganador es el jugador 2 por la cantidad de " << respuestasCorrectasPlayer2 << " puntos" << endl;
-    }
-    else
-    {
-        cout << "Los dos jugadores tienen el mismo puntaje con la cantidad de " << respuestasCorrectasPlayer1 << " puntos." << endl;
     }
 }
