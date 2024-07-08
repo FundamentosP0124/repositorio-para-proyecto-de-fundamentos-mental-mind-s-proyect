@@ -12,13 +12,12 @@ const int Num_Preguntas = 15;
 
 // Necesitamos agregar vectores para, poder almacenar datos en diversas ocaciones sin perder los ya existentes
 
-// B O R R A D O R
+// B O R R A D O R hector
+const int maximoJugadores = 100;
+const int maxiPuntuacion = 100;
+string guardarNombres[maximoJugadores];
+int guardarPuntuaciones[maxiPuntuacion];
 
-const int MAX_JUGADORES = 100; // Tamaño máximo del arreglo de jugadores
-string nombresGlobales[MAX_JUGADORES];
-const int resultadosGlobalesIndividual[MAX_JUGADORES];
-const int resultadosGlobalesMultijugador;
-int cantidadActualJugadores = 0;
 
 // DECLARACIONES
 
@@ -34,7 +33,7 @@ int validarNumeroRango(int, int);
 void LlamarArrePreguntasMitologia(string, string);
 void LlamarArrePreguntasGeografia(string, string);
 void LlamarArrePreguntasCultGeneral(string, string);
-void registrarJugadores(string [], int &);
+void registrarJugadores(string[], int &);
 
 int main(void)
 {
@@ -494,7 +493,6 @@ void LlamarArrePreguntasCultGeneral(string (&enviarPreguntas)[Num_Preguntas], st
     }
 }
 
-
 int juegoIndividual()
 { // Funcion con limites de desaciertos y se necesita modificar para la configuracion seleccionada
 
@@ -689,13 +687,3 @@ int multijugador(int RespCorrectasPlayerOne, int RespCorrectasPlayerTwo) // Reto
         }
     }
 }
-
-
-
-/*Modificar esto para obtener los datos de cada jugador y luego almacenarlo en una variable global que quizas ya este
-entonces despues de almacenarlas vamos a mostrar todos los datos, nombres y puntuaciones obtenidas por cada uno porque si verificamos que ya existe algun jugador que este registrado
-entonces vamos a solo actualizar su registro sin necesidad de repetir. Despues vamos a mostrar que si alguno de los jugadores que se va registrar ya esta registrado darle la opcion de volver a jugar sin necesidad de volverse a registrar
-independientemente si solo es un jugador o dos jugadores
-
-Primero mandamos todos los datos a las variables globales despues imprimimos los datos de las variables globales */
-
