@@ -132,9 +132,8 @@ void RegistroDesarrolladores() {
     cout << "================================================" << endl;
     cout << "                    CREDITOS         " << endl;
     cout << "================================================" << endl;
-    cout << "  Casco Miranda, Hector Enrique      00141124" << endl;
     cout << "  De la O Ortiz, Cesar Daniel        00205824" << endl;
-    cout << "  Aquino Figueroa, Rodrigo Javier    00024524" << endl;
+    cout << "  Casco Miranda, Hector Enrique      00141124" << endl;
     cout << "================================================" << endl;
     cout << endl;
 
