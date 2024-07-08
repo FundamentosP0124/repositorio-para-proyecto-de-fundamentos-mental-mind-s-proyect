@@ -225,3 +225,9 @@ void IniciarJuego() {
         Menu();
     }
 }
+
+void mostrarDatos(){
+    cout << "Datos Registrados: " << endl;
+
+    cout << "Jugador: " << guardarNombres[i] << " -Puntuacion: " << guardarPuntuaciones[i] << endl;
+}
