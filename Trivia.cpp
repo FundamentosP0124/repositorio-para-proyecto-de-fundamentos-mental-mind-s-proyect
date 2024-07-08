@@ -17,6 +17,13 @@ bool Salir();
 void registrarDatos(const string &, int);
 void mostrarDatos();
 
+int cantidadActualJugadores = 0;
+int cantidadActualPuntuaciones = 0;
+const int maximoJugadores = 100;
+const int maxiPuntuacion = 100;
+string guardarNombres[maximoJugadores];
+int guardarPuntuaciones[maxiPuntuacion];
+
 
 int main(void)
 {
@@ -228,6 +235,7 @@ void IniciarJuego() {
 
 void mostrarDatos(){
     cout << "Datos Registrados: " << endl;
-
-    cout << "Jugador: " << guardarNombres[i] << " -Puntuacion: " << guardarPuntuaciones[i] << endl;
+    for (int i = 0; i < cantidadActualJugadores; i++){
+       cout << "Jugador: " << guardarNombres[i] << " -Puntuacion: " << guardarPuntuaciones[i] << endl; 
+    } 
 }
