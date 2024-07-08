@@ -3,8 +3,8 @@
 #include "string"
 using namespace std;
 
-/*Juego de trivia de preguntas al azar con 3 niveles de dificultad y un maximo de 3 equivocaciones
-de acuerdo a la modalidad seleccionada del juego sin es por limites de inaciertos puntuacion final
+/*Juego de trivia de preguntas al azar con 4 tematicas de preguntas y respuestas con un maximo de 3 equivocaciones
+de acuerdo a la modalidad seleccionada del juego o hasta finalizar las preguntas con puntuacion final y un ganador
 segun si es el modo multijugador o de manera individual*/
 
 void Menu();
