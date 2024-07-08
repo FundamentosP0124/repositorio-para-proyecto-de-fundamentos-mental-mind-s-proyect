@@ -2,22 +2,12 @@
 #include <cstdlib>
 #include <ctime>
 #include <string>
-#include <vector> //Se necesita para poder almacenar los datos de los jugadores y asi tambeien poder enviarle los datos a los vectores utilizando el push_back
 #include <cctype>
 #include <limits>
 
 using namespace std;
 
 const int Num_Preguntas = 15;
-
-// Necesitamos agregar vectores para, poder almacenar datos en diversas ocaciones sin perder los ya existentes
-
-// B O R R A D O R hector
-const int maximoJugadores = 100;
-const int maxiPuntuacion = 100;
-string guardarNombres[maximoJugadores];
-int guardarPuntuaciones[maxiPuntuacion];
-
 
 // DECLARACIONES
 
