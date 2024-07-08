@@ -197,7 +197,10 @@ void registrarJugadores(string guardarNombres[], int &cantidadActual)
             cout << " (" << i + 1 << ")";
         }
         cout << ": ";
-        cin >> guardarNombres[cantidadActual + i];
+
+        cin >> nombresRecientes[i];
+
+        guardarNombres[cantidadActual + i] = nombresRecientes[i];
     }
     cantidadActual += cantidad; // Actualizar la cantidad actual de jugadores
 }
