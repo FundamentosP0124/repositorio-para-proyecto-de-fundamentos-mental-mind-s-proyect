@@ -85,6 +85,9 @@ void Menu()
             TemasEvaluados();
             break;
         case 5:
+            ObjetivosdelJuego();
+            break;
+        case 6:
             if (Salir())
             {
                 exit(0);
@@ -200,7 +203,7 @@ void TemasEvaluados()
     }
 }
 
-void ObjetivosdelJuego() 
+void ObjetivosdelJuego()
 {
     system("clear||cls");
     cout << endl;
@@ -208,8 +211,8 @@ void ObjetivosdelJuego()
         "Realizar un juego en lenguaje C++ donde se abarquen todos los temas vistos en las\n"
         "clases, debe hacer uso de git para su trabajo colaborativo. El juego debe ser de\n"
         "competencia y reportar ganador. Por ejemplo: carreras de caballos, piedra papel o\n"
-        "tijera, ahorcado, equis-cero, etc. Todo será en modo texto, no se admitirá modo\n"
-        "gráfico para el desarrollo de ninguna parte de su juego.\n\n "
+        "tijera, ahorcado, equis-cero, etc. Todo sera en modo texto, no se admitira modo\n"
+        "grafico para el desarrollo de ninguna parte de su juego.\n\n "
 
         "Con el objetivo de desarrollar un programa en C++ que permita demostrar todas las habilidades\n"
         "adquiridas a lo largo del curso como el uso de instrucciones iterativas, condicionales,\n"
@@ -218,7 +221,7 @@ void ObjetivosdelJuego()
     // Llamamos a la función para imprimir el párrafo
     imprimirParrafo(parrafo);
     cout << endl;
-    
+
     char salir;
 
     cout << "Presiona 's' o 'S' para regresar al menu principal..." << endl;
@@ -253,7 +256,9 @@ bool Salir()
             return true; // Termina el programa
             break;
         case 0:
+            cout << endl;
             cout << "Continuando el juego..." << endl;
+            cout << endl;
             return false;
             break;
         default:
