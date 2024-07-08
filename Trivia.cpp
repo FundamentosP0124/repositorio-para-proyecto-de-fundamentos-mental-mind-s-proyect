@@ -13,6 +13,7 @@ void MostrarAyuda();
 void RegistroDesarrolladores();
 void TemasEvaluados();
 void ObjetivosdelJuego();
+void mostrarJugadoresInscritos();
 void imprimirParrafo(const string &parrafo);
 bool Salir();
 void mostrarDatos();
@@ -27,6 +28,7 @@ const int maxiPuntuacion = 100;
 // Variables para guardar Nombres y Puntuaciones
 string guardarNombres[maximoJugadores];
 int guardarPuntuaciones[maxiPuntuacion];
+string nombresRecientes[2];
 
 int main(void)
 {
@@ -357,5 +359,16 @@ void registrarPuntuacion(int puntuacion)
     else
     {
         cout << "No se pueden registrar mas jugadores o puntuaciones, se ha alcanzado el maximo." << endl;
+    }
+}
+
+void mostrarJugadoresInscritos()
+{
+    cout << "Los nombres de los participantes inscritos en TriviaZone son los siguientes: " << endl
+         << endl;
+
+    for (int i = 0; i < 2; i++)
+    {
+        cout << nombresRecientes[i] << endl;
     }
 }
