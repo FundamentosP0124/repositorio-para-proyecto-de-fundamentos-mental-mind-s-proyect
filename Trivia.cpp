@@ -12,6 +12,7 @@ void IniciarJuego();
 void MostrarAyuda();
 void RegistroDesarrolladores();
 void TemasEvaluados();
+void ObjetivosdelJuego();
 void imprimirParrafo(const string &parrafo);
 bool Salir();
 void mostrarDatos();
@@ -60,7 +61,8 @@ void Menu()
         cout << "2. Ayuda" << endl;
         cout << "3. Creditos/Desarrolladores" << endl;
         cout << "4. Temas de las Preguntas" << endl;
-        cout << "5. Salir" << endl;
+        cout << "5. Objetivos del juego" << endl;
+        cout << "6. Salir" << endl;
         cout << "============================" << endl;
         cout << endl;
 
@@ -186,6 +188,37 @@ void TemasEvaluados()
     cout << "Al momento que selecciones jugar, tu elegiras el tema de preguntas que te gustaria desafiar. Buena Suerte Triviano!!!" << endl;
     cout << endl;
 
+    char salir;
+
+    cout << "Presiona 's' o 'S' para regresar al menu principal..." << endl;
+    cin >> salir;
+
+    if (salir == 's' || salir == 'S')
+    {
+        system("clear||cls");
+        Menu();
+    }
+}
+
+void ObjetivosdelJuego() 
+{
+    system("clear||cls");
+    cout << endl;
+    const string parrafo =
+        "Realizar un juego en lenguaje C++ donde se abarquen todos los temas vistos en las\n"
+        "clases, debe hacer uso de git para su trabajo colaborativo. El juego debe ser de\n"
+        "competencia y reportar ganador. Por ejemplo: carreras de caballos, piedra papel o\n"
+        "tijera, ahorcado, equis-cero, etc. Todo será en modo texto, no se admitirá modo\n"
+        "gráfico para el desarrollo de ninguna parte de su juego.\n\n "
+
+        "Con el objetivo de desarrollar un programa en C++ que permita demostrar todas las habilidades\n"
+        "adquiridas a lo largo del curso como el uso de instrucciones iterativas, condicionales,\n"
+        "arreglos, funciones, entre otros.";
+
+    // Llamamos a la función para imprimir el párrafo
+    imprimirParrafo(parrafo);
+    cout << endl;
+    
     char salir;
 
     cout << "Presiona 's' o 'S' para regresar al menu principal..." << endl;
