@@ -14,6 +14,9 @@ void RegistroDesarrolladores();
 void TemasEvaluados();
 void imprimirParrafo(const string& parrafo);
 bool Salir();
+void registrarDatos(const string &, int);
+void mostrarDatos();
+
 
 int main(void)
 {
